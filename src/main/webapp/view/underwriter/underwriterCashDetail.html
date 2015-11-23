@@ -1,0 +1,53 @@
+#set($layout='layout/defaultUnderwriter.html')
+<link rel="stylesheet" type="text/css" href="../css/cash.css">
+<div class="content">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span onclick="window.open('#springUrl("/underwriter/cash.do")','_self')">分成明细</span>
+			<span onclick="window.open('#springUrl("/underwriter/spend.do")','_self')">提现明细</span>
+			<span class="slidespan"></span>
+		</div>
+		<div class="spend_detail" id="spend_detail">
+			<a class="mt20 mr20 download" id="download">下载Excel</a>
+			<div class="mt10 table">
+				<table>
+					<thead>
+						<tr>
+							<th>时间</th>
+							<th>卡券名称</th>
+							<th>单价（元）</th>
+							<th>分成（元）</th>
+						</tr>
+					</thead>
+					<tbody>
+					#foreach(${item} in ${queryInfos})
+						<tr>
+							<td>$!{date.format('HH:mm:ss',$!{item.atTime})}</td>
+							<td>$!{item.title}</td>
+							<td>$!{numeric.toFixedCurrency(${math.div($!{item.cost},100)})}</td>
+							<td>$!{numeric.toFixedCurrency(${math.div($!{item.charge},100)})}</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			<div class="mt20">
+				<button class="btn"
+					onclick="javascript:history.back();">返回</button>
+				<div class="paging" id="page"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script>
+$("#system_first").attr("class", "first_menu active_menu"); 
+$("#system_cash_second").attr("class", "active_second_menu");
+MaxPage = $!{pageInfo.maxPage};
+paging();
+$('#download').click(
+		function() {
+			window.open(ctxPath + "underwriter/cashDetailExcel.do?atTime=$!{date.format('yyyy-MM-dd',$!{pageInfo.startTime})}", '_self');
+		})
+</script>

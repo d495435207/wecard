@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.VerifyMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.Verify">
+		<!-- WARNING - @mbggenerated -->
+		<id column="code" jdbcType="VARCHAR" property="code" />
+		<id column="card_id" jdbcType="INTEGER" property="cardId" />
+		<result column="open_id" jdbcType="VARCHAR" property="openId" />
+		<result column="at_time" jdbcType="TIMESTAMP" property="atTime" />
+		<result column="offset_type" jdbcType="INTEGER" property="offsetType" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="is_del" jdbcType="INTEGER" property="isDel" />
+		<result column="staff_open_id" jdbcType="VARCHAR" property="staffOpenId" />
+		<result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+		<result column="source" jdbcType="VARCHAR" property="source" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		code, card_id, open_id, at_time, offset_type, longitude, latitude,
+		is_del, staff_open_id,
+		branch_name, source
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.dxj.wecard.model.VerifyKey"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from verify
+		where code = #{code,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.dxj.wecard.model.VerifyKey">
+		<!-- WARNING - @mbggenerated -->
+		delete from verify
+		where code = #{code,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.Verify">
+		<!-- WARNING - @mbggenerated -->
+		insert into verify (code, card_id, open_id,
+		at_time, offset_type,
+		longitude,
+		latitude, is_del, staff_open_id,
+		branch_name, source)
+		values
+		(#{code,jdbcType=VARCHAR}, #{cardId,jdbcType=INTEGER},
+		#{openId,jdbcType=VARCHAR},
+		#{atTime,jdbcType=TIMESTAMP},
+		#{offsetType,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER},
+		#{staffOpenId,jdbcType=VARCHAR},
+		#{branchName,jdbcType=VARCHAR},
+		#{source,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.Verify">
+		<!-- WARNING - @mbggenerated -->
+		insert into verify
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="code != null">
+				code,
+			</if>
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="atTime != null">
+				at_time,
+			</if>
+			<if test="offsetType != null">
+				offset_type,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="isDel != null">
+				is_del,
+			</if>
+			<if test="staffOpenId != null">
+				staff_open_id,
+			</if>
+			<if test="branchName != null">
+				branch_name,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=INTEGER},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="atTime != null">
+				#{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="offsetType != null">
+				#{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="isDel != null">
+				#{isDel,jdbcType=INTEGER},
+			</if>
+			<if test="staffOpenId != null">
+				#{staffOpenId,jdbcType=VARCHAR},
+			</if>
+			<if test="branchName != null">
+				#{branchName,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Verify">
+		<!-- WARNING - @mbggenerated -->
+		update verify
+		<set>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="atTime != null">
+				at_time = #{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="offsetType != null">
+				offset_type = #{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="isDel != null">
+				is_del = #{isDel,jdbcType=INTEGER},
+			</if>
+			<if test="staffOpenId != null">
+				staff_open_id = #{staffOpenId,jdbcType=VARCHAR},
+			</if>
+			<if test="branchName != null">
+				branch_name = #{branchName,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where code = #{code,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Verify">
+		<!-- WARNING - @mbggenerated -->
+		update verify
+		set open_id = #{openId,jdbcType=VARCHAR},
+		at_time =
+		#{atTime,jdbcType=TIMESTAMP},
+		offset_type =
+		#{offsetType,jdbcType=INTEGER},
+		longitude =
+		#{longitude,jdbcType=VARCHAR},
+		latitude = #{latitude,jdbcType=VARCHAR},
+		is_del = #{isDel,jdbcType=INTEGER},
+		staff_open_id =
+		#{staffOpenId,jdbcType=VARCHAR},
+		branch_name =
+		#{branchName,jdbcType=VARCHAR},
+		source = #{source,jdbcType=VARCHAR}
+		where code = #{code,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getVerifiesNumCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(cardId) from (
+		select count(r.card_id)
+		count,r.card_id cardId,cw.* from
+		verify r
+		left join
+		(select c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id ) a
+	</select>
+
+	<select id="getVerifiesCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select count(r.card_id) count,r.card_id cardId,cw.* from
+		verify r
+		left join
+		(select c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id
+		order by count desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getCardsVerifyNumByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(atTime) from (
+		select vc.at_time
+		atTime,wu.nick_name
+		name,wu.head_img logo
+		from (select v.*,c.app_id
+		from (select
+		card_id,at_time,open_id from
+		verify where 1=1
+		<if test="id != null">
+			and card_id = #{id,jdbcType=INTEGER}
+		</if>
+		) v left join card c on v.card_id=c.id )
+		vc
+		left join weixin_user wu on
+		vc.app_id=wu.app_id and
+		vc.open_id=wu.open_id ) a
+	</select>
+
+	<select id="getCardsVerifyByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select vc.at_time atTime,wu.nick_name name,wu.head_img logo
+		from
+		(select v.*,c.app_id from (select card_id,at_time,open_id from
+		verify
+		where 1=1
+		<if test="id != null">
+			and card_id = #{id,jdbcType=INTEGER}
+		</if>
+		) v left join card c on
+		v.card_id=c.id ) vc
+		left join weixin_user wu on
+		vc.app_id=wu.app_id and
+		vc.open_id=wu.open_id
+		order by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+</mapper>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.CardMoreMapper">
+  <resultMap id="BaseResultMap" type="com.dxj.wecard.model.CardMore">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="fixed_term" jdbcType="INTEGER" property="fixedTerm" />
+    <result column="fixed_begin_term" jdbcType="INTEGER" property="fixedBeginTerm" />
+    <result column="least_cost" jdbcType="INTEGER" property="leastCost" />
+    <result column="reduce_cost" jdbcType="INTEGER" property="reduceCost" />
+    <result column="discount" jdbcType="INTEGER" property="discount" />
+    <result column="notice" jdbcType="VARCHAR" property="notice" />
+    <result column="service_phone" jdbcType="VARCHAR" property="servicePhone" />
+    <result column="custom_url_name" jdbcType="VARCHAR" property="customUrlName" />
+    <result column="custom_url" jdbcType="VARCHAR" property="customUrl" />
+    <result column="custom_url_sub_title" jdbcType="VARCHAR" property="customUrlSubTitle" />
+    <result column="promotion_url_name" jdbcType="VARCHAR" property="promotionUrlName" />
+    <result column="promotion_url" jdbcType="VARCHAR" property="promotionUrl" />
+    <result column="promotion_url_sub_title" jdbcType="VARCHAR" property="promotionUrlSubTitle" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="location_id_list" jdbcType="VARCHAR" property="locationIdList" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, begin_time, end_time, fixed_term, fixed_begin_term, least_cost, reduce_cost, 
+    discount, notice, service_phone, custom_url_name, custom_url, custom_url_sub_title, 
+    promotion_url_name, promotion_url, promotion_url_sub_title, description,location_id_list, detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from card_more
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from card_more
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dxj.wecard.model.CardMore">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into card_more (id, begin_time, end_time, 
+      fixed_term, fixed_begin_term, least_cost, 
+      reduce_cost, discount, notice, 
+      service_phone, custom_url_name, custom_url, 
+      custom_url_sub_title, promotion_url_name, promotion_url, 
+      promotion_url_sub_title, description, location_id_list,detail
+      )
+    values (#{id,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{fixedTerm,jdbcType=INTEGER}, #{fixedBeginTerm,jdbcType=INTEGER}, #{leastCost,jdbcType=INTEGER}, 
+      #{reduceCost,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{notice,jdbcType=VARCHAR}, 
+      #{servicePhone,jdbcType=VARCHAR}, #{customUrlName,jdbcType=VARCHAR}, #{customUrl,jdbcType=VARCHAR}, 
+      #{customUrlSubTitle,jdbcType=VARCHAR}, #{promotionUrlName,jdbcType=VARCHAR}, #{promotionUrl,jdbcType=VARCHAR}, 
+      #{promotionUrlSubTitle,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},#{locationIdList,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dxj.wecard.model.CardMore">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into card_more
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="fixedTerm != null">
+        fixed_term,
+      </if>
+      <if test="fixedBeginTerm != null">
+        fixed_begin_term,
+      </if>
+      <if test="leastCost != null">
+        least_cost,
+      </if>
+      <if test="reduceCost != null">
+        reduce_cost,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="notice != null">
+        notice,
+      </if>
+      <if test="servicePhone != null">
+        service_phone,
+      </if>
+      <if test="customUrlName != null">
+        custom_url_name,
+      </if>
+      <if test="customUrl != null">
+        custom_url,
+      </if>
+      <if test="customUrlSubTitle != null">
+        custom_url_sub_title,
+      </if>
+      <if test="promotionUrlName != null">
+        promotion_url_name,
+      </if>
+      <if test="promotionUrl != null">
+        promotion_url,
+      </if>
+      <if test="promotionUrlSubTitle != null">
+        promotion_url_sub_title,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="locationIdList != null">
+        location_id_list,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixedTerm != null">
+        #{fixedTerm,jdbcType=INTEGER},
+      </if>
+      <if test="fixedBeginTerm != null">
+        #{fixedBeginTerm,jdbcType=INTEGER},
+      </if>
+      <if test="leastCost != null">
+        #{leastCost,jdbcType=INTEGER},
+      </if>
+      <if test="reduceCost != null">
+        #{reduceCost,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="notice != null">
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null">
+        #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrlName != null">
+        #{customUrlName,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrl != null">
+        #{customUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrlSubTitle != null">
+        #{customUrlSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrlName != null">
+        #{promotionUrlName,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrl != null">
+        #{promotionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrlSubTitle != null">
+        #{promotionUrlSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="locationIdList != null">
+        #{locationIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.CardMore">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update card_more
+    <set>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fixedTerm != null">
+        fixed_term = #{fixedTerm,jdbcType=INTEGER},
+      </if>
+      <if test="fixedBeginTerm != null">
+        fixed_begin_term = #{fixedBeginTerm,jdbcType=INTEGER},
+      </if>
+      <if test="leastCost != null">
+        least_cost = #{leastCost,jdbcType=INTEGER},
+      </if>
+      <if test="reduceCost != null">
+        reduce_cost = #{reduceCost,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="notice != null">
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null">
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrlName != null">
+        custom_url_name = #{customUrlName,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrl != null">
+        custom_url = #{customUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="customUrlSubTitle != null">
+        custom_url_sub_title = #{customUrlSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrlName != null">
+        promotion_url_name = #{promotionUrlName,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrl != null">
+        promotion_url = #{promotionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionUrlSubTitle != null">
+        promotion_url_sub_title = #{promotionUrlSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.CardMore">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update card_more
+    set begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      fixed_term = #{fixedTerm,jdbcType=INTEGER},
+      fixed_begin_term = #{fixedBeginTerm,jdbcType=INTEGER},
+      least_cost = #{leastCost,jdbcType=INTEGER},
+      reduce_cost = #{reduceCost,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=INTEGER},
+      notice = #{notice,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      custom_url_name = #{customUrlName,jdbcType=VARCHAR},
+      custom_url = #{customUrl,jdbcType=VARCHAR},
+      custom_url_sub_title = #{customUrlSubTitle,jdbcType=VARCHAR},
+      promotion_url_name = #{promotionUrlName,jdbcType=VARCHAR},
+      promotion_url = #{promotionUrl,jdbcType=VARCHAR},
+      promotion_url_sub_title = #{promotionUrlSubTitle,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByIds" parameterType="java.lang.String">
+  	DELETE FROM card_more where id in
+
+
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">
+
+	#{idItem}
+	
+	</foreach>
+  
+  </delete>
+</mapper>

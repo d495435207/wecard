@@ -1,0 +1,98 @@
+#set($layout='layout/defaultPublisher.html')
+<link rel="stylesheet" type="text/css" href="../css/cash.css">
+<div class="content">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span onclick="window.open('#springUrl("/publisher/cash.do")','_self')">充值明细</span>
+			<span onclick="window.open('#springUrl("/publisher/spend.do")','_self')">消耗明细</span>
+			<span class="slidespan"></span>
+		</div>
+		<div class="cash_detail">
+			<div class="ml20 clearfix">
+				<div class="mr10 cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>账户余额</p>
+						<p>
+							<span>￥$!{numeric.toFixedCurrency(${math.div(${math.sub(${math.sub($!{fund.debitAmount},$!{fund.creditAmount})},$!{statInfo.sum})},100)})}</span>
+						</p>
+					</div>
+				</div>
+				<div class="mr10 cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>历史充值金额</p>
+						<p>
+							<span>￥$!{numeric.toFixedCurrency(${math.div($!{fund.debitAmount},100)})}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="ml20 mt40">
+				<button class="btn" id="charge_btn">充值</button>
+			</div>
+			<div class="table">
+				<table>
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>充值时间</th>
+							<th>充值金额（元）</th>
+							<th>账户余额（元）</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach(${item} in ${queryInfos})
+						<tr>
+							<td>$!{math.add(${math.mul(${math.sub(${pageInfo.page},1)},${pageInfo.size})},${foreach.count})}</td>
+							<td>$!{date.format('yyyy-MM-dd HH:mm:ss',$!{item.atTime})}</td>
+							<td>$!{numeric.toFixedCurrency(${math.div($!{item.sum},100)})}</td>
+							<td>#if(${pageInfo.page}==1&&${foreach.count}==1)
+								$!{numeric.toFixedCurrency(${math.div(${math.sub(${math.sub($!{fund.debitAmount},$!{fund.creditAmount})},$!{statInfo.sum})},100)})}
+								#else
+								$!{numeric.toFixedCurrency(${math.div($!{item.balance},100)})}
+								#end</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			<div class="paging" id="page"></div>
+		</div>
+		<div class="cash_charge">
+			<div class="charge_div">
+				<div>
+					<span class="form_head">充值金额：</span> <input id="charge" type="text">
+					<span>元</span>
+				</div>
+				<div class="mt40 center">
+					<button class="btn back">返回</button>
+					<button class="btn" id="confirm">确定</button>
+				</div>
+			</div>
+			<div class="tip_div" id="tip">
+				<p>充值遇到问题了？</p>
+				<p>支付宝或网银页面显示错误或空白？</p>
+				<p>有些网银对浏览器兼容性有一定要求，导致无法正常支付，若因浏览器造成支付失败，建议您使用IE浏览器进行支付操作。</p>
+			</div>
+			<div class="alert" id="recharge">
+				<div>
+					<span> 请您在新打开的支付页面进行充值，充值完成前请不要关闭窗口！ </span>
+				</div>
+				<div class="mt40 center">
+					<button id="recharge_confirm">充值成功</button>
+					<button id="recharge_cancel">遇到问题</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/cash.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_cash_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+</script>

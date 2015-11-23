@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.FundMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.Fund">
+		<!-- WARNING - @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="partner_id" jdbcType="INTEGER" property="partnerId" />
+		<result column="at_time" jdbcType="TIMESTAMP" property="atTime" />
+		<result column="debit_amount" jdbcType="INTEGER" property="debitAmount" />
+		<result column="credit_amount" jdbcType="INTEGER" property="creditAmount" />
+		<result column="source" jdbcType="VARCHAR" property="source" />
+		<result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="payee" jdbcType="VARCHAR" property="payee" />
+		<result column="opening_bank_name" jdbcType="VARCHAR" property="openingBankName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		id, partner_id, at_time, debit_amount, credit_amount, source,
+		bank_name, bank_account,
+		payee, opening_bank_name
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from fund
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- WARNING - @mbggenerated -->
+		delete from fund
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.Fund">
+		<!-- WARNING - @mbggenerated -->
+		insert into fund (id, partner_id, at_time,
+		debit_amount, credit_amount,
+		source,
+		bank_name, bank_account, payee,
+		opening_bank_name)
+		values
+		(#{id,jdbcType=INTEGER}, #{partnerId,jdbcType=INTEGER},
+		#{atTime,jdbcType=TIMESTAMP},
+		#{debitAmount,jdbcType=INTEGER},
+		#{creditAmount,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR},
+		#{bankName,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR},
+		#{payee,jdbcType=VARCHAR},
+		#{openingBankName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.Fund">
+		<!-- WARNING - @mbggenerated -->
+		insert into fund
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="partnerId != null">
+				partner_id,
+			</if>
+			<if test="atTime != null">
+				at_time,
+			</if>
+			<if test="debitAmount != null">
+				debit_amount,
+			</if>
+			<if test="creditAmount != null">
+				credit_amount,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankAccount != null">
+				bank_account,
+			</if>
+			<if test="payee != null">
+				payee,
+			</if>
+			<if test="openingBankName != null">
+				opening_bank_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="partnerId != null">
+				#{partnerId,jdbcType=INTEGER},
+			</if>
+			<if test="atTime != null">
+				#{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="debitAmount != null">
+				#{debitAmount,jdbcType=INTEGER},
+			</if>
+			<if test="creditAmount != null">
+				#{creditAmount,jdbcType=INTEGER},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="payee != null">
+				#{payee,jdbcType=VARCHAR},
+			</if>
+			<if test="openingBankName != null">
+				#{openingBankName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Fund">
+		<!-- WARNING - @mbggenerated -->
+		update fund
+		<set>
+			<if test="partnerId != null">
+				partner_id = #{partnerId,jdbcType=INTEGER},
+			</if>
+			<if test="atTime != null">
+				at_time = #{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="debitAmount != null">
+				debit_amount = #{debitAmount,jdbcType=INTEGER},
+			</if>
+			<if test="creditAmount != null">
+				credit_amount = #{creditAmount,jdbcType=INTEGER},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="payee != null">
+				payee = #{payee,jdbcType=VARCHAR},
+			</if>
+			<if test="openingBankName != null">
+				opening_bank_name = #{openingBankName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Fund">
+		<!-- WARNING - @mbggenerated -->
+		update fund
+		set partner_id = #{partnerId,jdbcType=INTEGER},
+		at_time =
+		#{atTime,jdbcType=TIMESTAMP},
+		debit_amount =
+		#{debitAmount,jdbcType=INTEGER},
+		credit_amount =
+		#{creditAmount,jdbcType=INTEGER},
+		source = #{source,jdbcType=VARCHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_account =
+		#{bankAccount,jdbcType=VARCHAR},
+		payee = #{payee,jdbcType=VARCHAR},
+		opening_bank_name = #{openingBankName,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getFundSumByPartner" parameterType="com.dxj.wecard.bean.Query"
+		resultMap="BaseResultMap">
+		select
+		sum(debit_amount) debit_amount,sum(credit_amount)
+		credit_amount
+		from fund
+		where 1=1
+		<if test="id != null">
+			and partner_id = #{id,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="getFundSumDateByPartner" parameterType="com.dxj.wecard.bean.Query"
+		resultMap="BaseResultMap">
+		select
+		sum(debit_amount) debit_amount,sum(credit_amount) credit_amount
+		from fund
+		where 1=1
+		<if test="id != null">
+			and partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="startTime != null">
+			and at_time <![CDATA[ < ]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+
+	<select id="getFundsDateAreaByPartner" parameterType="com.dxj.wecard.bean.Query"
+		resultMap="BaseResultMap">
+		select *
+		from fund
+		where 1=1
+		<if test="id != null">
+			and partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		order
+		by at_time desc
+	</select>
+
+	<select id="getFundsNumByPartner" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select
+		count(id)
+		from fund
+		where 1=1
+		<if test="id != null">
+			and partner_id = #{id,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="getFundsByPartner" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select ifnull(debit_amount,0)-ifnull(credit_amount,0)
+		sum,at_time
+		atTime,id
+		from fund
+		where 1=1
+		<if test="id != null">
+			and partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		order
+		by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getFundsNumByManagerPublisher" parameterType="com.dxj.wecard.bean.BizQuery"
+		resultType="java.lang.Integer">
+		select
+		count(id)
+		from (select a.user_id userId,a.partner_id id,a.at_time
+		atTime,a.name,a.id appId,
+		(ifnull(a.debit_amount,0)-ifnull(a.credit_amount,0)-ifnull(b.cost,0))
+		balance,b.cost
+		from
+		(select pupuw.*,f.debit_amount,f.credit_amount from
+		(select pupu.*,wa.name,wa.id from
+		(select pup.*,u.at_time from
+		(select
+		up.* from (select id from partner where role=0) p
+		left join
+		user_partner up on p.id=up.partner_id
+		where 1=1
+		<if test="userId != null">
+			and up.user_id like
+			"%"#{userId,jdbcType=VARCHAR}"%"
+		</if>
+		) pup
+		left join user u on pup.user_id=u.id
+		) pupu
+		left join weixin_app wa
+		on pupu.partner_id=wa.partner_id
+		where 1=1
+		<if test="name != null">
+			and wa.name like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		) pupuw
+		left join (select sum(debit_amount)
+		debit_amount,sum(credit_amount)
+		credit_amount,partner_id from fund
+		group by partner_id) f on
+		pupuw.partner_id=f.partner_id
+		) a
+		left join
+		(select app_id,sum(cost) cost from
+		(select r.*,c.app_id from (select
+		card_id,sum(cost) cost from receive group
+		by card_id) r
+		left join card c
+		on r.card_id=c.id) rc group by app_id) b
+		on a.id=b.app_id) c
+	</select>
+
+	<select id="getFundsByManagerPublisher" parameterType="com.dxj.wecard.bean.BizQuery"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select a.user_id userId,a.partner_id id,a.at_time
+		atTime,a.name,a.id
+		appId,
+		(ifnull(a.debit_amount,0)-ifnull(a.credit_amount,0)-ifnull(b.cost,0))
+		balance,b.cost
+		from
+		(select pupuw.*,f.debit_amount,f.credit_amount from
+		(select pupu.*,wa.name,wa.id from
+		(select pup.*,u.at_time from
+		(select
+		up.* from (select id from partner where role=0) p
+		left join
+		user_partner up on p.id=up.partner_id
+		where 1=1
+		<if test="userId != null">
+			and up.user_id like
+			"%"#{userId,jdbcType=VARCHAR}"%"
+		</if>
+		) pup
+		left join user u on pup.user_id=u.id
+		) pupu
+		left join weixin_app wa
+		on pupu.partner_id=wa.partner_id
+		where 1=1
+		<if test="name != null">
+			and wa.name like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		) pupuw
+		left join (select sum(debit_amount)
+		debit_amount,sum(credit_amount)
+		credit_amount,partner_id from fund
+		group by partner_id) f on
+		pupuw.partner_id=f.partner_id
+		) a
+		left join
+		(select app_id,sum(cost) cost from
+		(select r.*,c.app_id from (select
+		card_id,sum(cost) cost from receive group
+		by card_id) r
+		left join card c
+		on r.card_id=c.id) rc group by app_id) b
+		on a.id=b.app_id
+		order
+		by
+		at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getFundsNumByManagerUnderwriter" parameterType="com.dxj.wecard.bean.BizQuery"
+		resultType="java.lang.Integer">
+		select
+		count(id)
+		from (select a.user_id userId,a.partner_id id,a.company
+		name,a.at_time
+		atTime,a.balance balance,a.type type,r.cost cost,r.count
+		count from
+		(select pupuc.*,f.balance,f.type from
+		(select pupu.*,c.id
+		from
+		(select
+		pup.*,u.at_time from
+		(select
+		up.*,p.company from (select
+		id,company
+		from
+		partner where role=1
+		<if test="name != null">
+			and company like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		) p
+		left join
+		user_partner up on p.id=up.partner_id
+		where 1=1
+		<if test="userId != null">
+			and up.user_id like
+			"%"#{userId,jdbcType=VARCHAR}"%"
+		</if>
+		) pup
+		left join user u on pup.user_id=u.id
+		)pupu
+		left join channel c on
+		pupu.partner_id=c.partner_id
+		)pupuc
+		left join (select
+		partner_id,sum(ifnull(debit_amount,0)-ifnull(credit_amount,0)) balance
+		,if(date_format(max(at_time),'%Y-%m')=date_format(now(),'%Y-%m'),"1","2")
+		type from fund group by partner_id
+		) f on pupuc.partner_id=f.partner_id
+		)a
+		left join (select
+		outer_id,sum(cost_profit) cost,count(outer_id)
+		count
+		from receive group
+		by outer_id) r on a.id=r.outer_id
+		where 1=1
+		<if test="type != null">
+			and type=#{type,jdbcType=VARCHAR}
+		</if>
+		) c
+	</select>
+
+	<select id="getFundsByManagerUnderwriter" parameterType="com.dxj.wecard.bean.BizQuery"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select a.user_id userId,a.partner_id id,a.company name,a.at_time
+		atTime,a.balance balance,a.type type,r.cost cost,r.count count from
+		(select pupuc.*,f.balance,f.type from
+		(select pupu.*,c.id from
+		(select
+		pup.*,u.at_time from
+		(select
+		up.*,p.company from (select id,company
+		from
+		partner where role=1
+		<if test="name != null">
+			and company like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		) p
+		left join
+		user_partner up on p.id=up.partner_id
+		where 1=1
+		<if test="userId != null">
+			and up.user_id like
+			"%"#{userId,jdbcType=VARCHAR}"%"
+		</if>
+		) pup
+		left join user u on pup.user_id=u.id
+		)pupu
+		left join channel c on
+		pupu.partner_id=c.partner_id
+		)pupuc
+		left join (select
+		partner_id,sum(ifnull(debit_amount,0)-ifnull(credit_amount,0)) balance
+		,if(date_format(max(at_time),'%Y-%m')=date_format(now(),'%Y-%m'),"1","2")
+		type from fund group by partner_id
+		) f on pupuc.partner_id=f.partner_id
+		)a
+		left join (select
+		outer_id,sum(cost_profit) cost,count(outer_id)
+		count
+		from receive group
+		by outer_id) r on a.id=r.outer_id
+		where 1=1
+		<if test="type != null">
+			and type=#{type,jdbcType=VARCHAR}
+		</if>
+		order
+		by
+		at_time
+		desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getCountByManagerPublisher" resultType="com.dxj.wecard.bean.BizQuery">
+		select
+		p.count,f.charge,r.cost,(f.charge-r.cost) balance from
+		(select
+		count(id) count,sum(0) id from partner where role=0) p,
+		(select
+		(sum(debit_amount)-sum(credit_amount)) charge,sum(0) id from fund) f,
+		(select sum(cost) cost,sum(0) id from receive) r
+		where p.id=f.id and
+		f.id=r.id
+	</select>
+</mapper>

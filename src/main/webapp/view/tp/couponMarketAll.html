@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="../css/couponMarket.css">
+<div class="content">
+	<div class="mt40 item hide_coupon clearfix" item-num="1">
+		<div class="medals">
+			<img src="../images/gold.png"> <img src="../images/silver.png">
+			<img src="../images/bronze.png">
+		</div>
+		<div class="coupon_title">
+			#if(${pageInfo.type}==2)领取次数排行榜#elseif(${pageInfo.type}==3)浏览次数排行榜
+			#elseif(${pageInfo.type}==4)核销次数排行榜#else领取人数排行榜#end<span class="more"
+				data-stat="1"></span>
+		</div>
+		<div class="mt30" id="coupon">
+			#foreach(${item} in ${queryInfos})
+			<div class="coupon_show" style="background-color: $!item.color">
+				<div class="coupon_content">
+					<div class="coupon_logo">
+						<img src="$!{item.logo}">
+					</div>
+					<div class="coupon_detail">
+						<p>$!{item.name}</p>
+						<p class="coupon_title">$!{item.title}</p>
+					</div>
+				</div>
+				<div class="coupon_data">
+					<span>领取人数：$!{numeric.toFixedNumber($!{item.count})}</span> <span
+						class="fr">单价：￥$!{numeric.toFixedCurrency(${math.div($!{item.cost},100)})}</span>
+				</div>
+			</div>
+			#end
+		</div>
+		<div class="mt20 paging" id="paging1"></div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/couponMarket.js"></script>
+<script>
+	$("#couponMarket_first").attr("class", "first_menu active_menu");
+</script>

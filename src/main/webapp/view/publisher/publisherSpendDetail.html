@@ -1,0 +1,59 @@
+#set($layout='layout/defaultPublisher.html')
+<link rel="stylesheet" type="text/css" href="../css/cash.css">
+<div class="content">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span onclick="window.open('publisherCash.html','_self')">充值明细</span>
+			<span onclick="window.open('publisherSpend.html','_self')">消耗明细</span>
+			<span class="slidespan tab2"></span>
+		</div>
+		<div class="spend_detail" id="spend_detail">
+			<a class="mt20 mr20 download" id="download">下载Excel</a>
+			<div class="mt10 table">
+				<table>
+					<thead>
+						<tr>
+							<th>扣款时间</th>
+							<th>扣款来源</th>
+							<th>扣款（元）</th>
+							<th>账户余额（元）</th>
+							<th>承销商名称</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach(${item} in ${queryInfos})
+						<tr>
+							<td>$!{date.format('HH:mm:ss',$!{item.atTime})}</td>
+							<td>$!{item.title}</td>
+							<td>$!{numeric.toFixedCurrency(${math.div($!{item.cost},100)})}</td>
+							<td>#if(${pageInfo.page}==1&&${foreach.count}==1)
+								$!{numeric.toFixedCurrency(${math.div($!{pageInfo.balance},100)})}
+								#else
+								$!{numeric.toFixedCurrency(${math.div($!{item.balance},100)})}
+								#end</td>
+							<td>$!{item.name}</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			<div class="mt20">
+				<button class="btn" onclick="javascript:history.back();">返回</button>
+				<div class="paging" id="page"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/spend_detail.js"></script>
+<script>
+$("#system_first").attr("class", "first_menu active_menu"); 
+$("#system_cash_second").attr("class", "active_second_menu"); 
+MaxPage = $!{pageInfo.maxPage};
+paging();
+$('#download').click(
+		function() {
+			window.open(ctxPath + "publisher/spendDetailExcel.do?atTime=$!{date.format('yyyy-MM-dd',$!{pageInfo.startTime})}&balance=$!{pageInfo.balance}", '_self');
+		})
+</script>

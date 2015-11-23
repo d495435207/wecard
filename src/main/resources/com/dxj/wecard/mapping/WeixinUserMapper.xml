@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.WeixinUserMapper">
+  <resultMap id="BaseResultMap" type="com.dxj.wecard.model.WeixinUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="app_id" jdbcType="VARCHAR" property="appId" />
+    <id column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+    <result column="subscribe_time" jdbcType="TIMESTAMP" property="subscribeTime" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    app_id, open_id, nick_name, remark, head_img, group_id, subscribe_time, sex, city, 
+    country, province, language
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.dxj.wecard.model.WeixinUserKey" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from weixin_user
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and open_id = #{openId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dxj.wecard.model.WeixinUserKey">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from weixin_user
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and open_id = #{openId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dxj.wecard.model.WeixinUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into weixin_user (app_id, open_id, nick_name, 
+      remark, head_img, group_id, 
+      subscribe_time, sex, city, 
+      country, province, language
+      )
+    values (#{appId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{subscribeTime,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dxj.wecard.model.WeixinUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into weixin_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="headImg != null">
+        head_img,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null">
+        #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.WeixinUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update weixin_user
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="headImg != null">
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and open_id = #{openId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.WeixinUser">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update weixin_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=VARCHAR},
+      subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR}
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and open_id = #{openId,jdbcType=VARCHAR}
+  </update>
+</mapper>

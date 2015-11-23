@@ -1,0 +1,21 @@
+.form_content {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px;
+	padding-bottom: 50px;
+}
+
+.form_content > div {
+	margin-top: 25px;
+	font-size: 16px;
+}
+
+.form_content > div span {
+	font-size: 16px;
+}
+
+.input_head {
+	display: inline-block;
+	width: 350px;
+	text-align: right;
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<title>HTML</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/manage.css">
+</head>
+<body>
+<div class="container">
+	<div class="left_menu clearfix">
+		<div class="left_scroll">
+			<img class="mt20 logo" src="../images/logo.jpg">
+			<div>
+				<a class="first_menu" href="../manager/managerIndex.html">
+					<span class="menu_icon"></span>首页
+				</a>
+			</div>
+			<div>
+				<a class="first_menu" href="javascript:;">
+					<span class="menu_icon"></span>我的卡券
+				</a>
+				<ul class="second_menu hide">
+					<li><a href="../manager/managerCouponManage.html">卡券管理</a></li>
+					<li><a href="../manager/managerCouponPut.html">已上架卡券</a></li>
+				</ul>
+			</div>
+			<div>
+				<a class="first_menu" href="../manager/couponMarket.html">
+					<span class="menu_icon"></span>卡券市场
+				</a>
+			</div>
+			<div>
+				<a class="first_menu active_menu" href="javascript:;">
+					<span class="menu_icon"></span>系统管理
+				</a>
+				<ul class="second_menu hide">
+					<li><a class="active_second_menu" href="publisherManage.html">发行商管理</a></li>
+					<li><a href="../underwriter/underwriterManage.html">承销商管理</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<header>
+			<div class="header">
+				<img class="exit" src="../images/exit.png">
+				<div>
+					您好， <span id="recount">18765432100</span>
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<div class="mt40 clearfix">
+				<div class="mr10 cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>总账户数</p>
+						<p>1000</p>
+					</div>
+				</div>
+				<div class="mr10 cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>总账户余额</p>
+						<p>￥10,000</p>
+					</div>
+				</div>
+				<div class="mr10 cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>总消耗</p>
+						<p>999</p>
+					</div>
+				</div>
+				<div class="cell">
+					<span class="icon"></span>
+					<div class="message">
+						<p>总充值金额</p>
+						<p>200</p>
+					</div>
+				</div>
+			</div>
+			<form class="mt50 search clearfix">
+				<div class="search_item">
+					<div class="search_head">用户名：</div>
+					<input class="input_text" type="text">
+				</div>
+				<div class="search_item">
+					<div class="search_head">公众号名称：</div>
+					<input class="input_text" type="text">
+				</div>
+				<button class="search_btn">搜索</button>
+			</form>
+			<div><button class="btn" onclick="window.open('creatPublisher.html','_self')">创建账户</button></div>
+			<div class="mt20 table">
+				<table>
+					<thead>
+						<tr>
+							<th>用户名</th>
+							<th>公众号名称</th>
+							<th>开户时间</th>
+							<th>账户余额（元）</th>
+							<th>消耗（元）</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+						<tr>
+							<td>18765432100</td>
+							<td>潮Link</td>
+							<td>2015-4-4</td>
+							<td>999999</td>
+							<td>100000</td>
+							<td>
+								<a class="charge" href="javascript:;">充值</a>&nbsp;&nbsp;
+								<a class="charge_detail" href="../manager/managerCharge.html">充值明细</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="mt20 paging" id="page"></div>
+		</div>
+	</div>
+</div>
+<div class="alert" id="charge">
+	<div>
+		<span>充值金额</span>
+		<input id="charge_input" type="text" placeholder="充值金额不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="charge_confirm">确定</button>
+		<button id="charge_cancel">取消</button>
+	</div>
+</div>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/manage.js"></script>
+<script type="text/javascript" src="../js/highcharts.js"></script>
+</body>
+</html>

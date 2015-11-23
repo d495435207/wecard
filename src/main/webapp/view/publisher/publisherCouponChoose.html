@@ -1,0 +1,159 @@
+#set($layout='layout/defaultPublisher.html')
+<link rel="stylesheet" type="text/css" href="../css/couponChoose.css">
+<div class="content">
+	<div class="mt50 step">
+		<div class="step1" id="step1">
+			<span>1.选择一张卡券</span>
+		</div>
+		<div class="step2" id="step2">
+			<span>2.设定卡券单价</span>
+		</div>
+	</div>
+	<div class="tab1">
+		<div class="mt50 search clearfix">
+			<div class="search_item">
+				<div class="search_head">卡券类型：</div>
+				<div class="input_select" type="text">
+					<span class="input_select_value" id="card_type">全部</span>
+					<ul class="select_option">
+						<li value="">全部</li>
+						<li value="1">礼品券</li>
+						<li value="2">代金券</li>
+						<li value="3">团购券</li>
+						<li value="4">折扣券</li>
+						<li value="5">优惠券</li>
+					</ul>
+					<span class="arrow" src="images/arrow.png"></span>
+				</div>
+			</div>
+			<div class="search_item">
+				<div class="search_head">卡券名称：</div>
+				<input class="input_text" type="text" id="card_title">
+			</div>
+			<button class="search_btn" id="search_btn">搜索</button>
+		</div>
+		<div class="table">
+			<table>
+				<thead>
+					<tr>
+						<th>卡券类型</th>
+						<th>卡券名称</th>
+						<th>卡券有效期</th>
+						<th>库存</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					#foreach(${item} in ${queryInfos})
+					<tr>
+						<td>#if(${item.type}==1)礼品券 #elseif(${item.type}==2)代金券
+							#elseif(${item.type}==3)团购券 #elseif(${item.type}==4)折扣券
+							#elseif(${item.type}==5)优惠券 #else #end</td>
+						<td>$!{item.title}</td>
+						<td>$!{item.dateInfo}</td>
+						<td>$!{item.quantity}</td>
+						<td><a class="pick" href="javascript:next($!{item.id});">选择</a></td>
+					</tr>
+					#end
+				</tbody>
+			</table>
+		</div>
+		<div class="mt20 mb30">
+			<div class="paging" id="page"></div>
+			<button class="btn"
+				onclick="window.open('${rc.contextPath}/publisher/couponPut.do','_self')">返回</button>
+		</div>
+	</div>
+	<div class="mt50 tab2">
+		#foreach(${item} in ${queryInfos})
+		<div class="card_info_table clearfix" id="card_info_$!{item.id}">
+			<div class="coupon_show" style="background-color: $!item.color">
+				<div class="coupon_logo">
+					<img src="$!{item.logo}">
+				</div>
+				<div class="coupon_detail">
+					<p>$!{item.name}</p>
+					<p class="coupon_title">$!{item.title}</p>
+					<p>#if(${item.type}==1)礼品券 #elseif(${item.type}==2)代金券
+						#elseif(${item.type}==3)团购券 #elseif(${item.type}==4)折扣券
+						#elseif(${item.type}==5)优惠券 #else #end</p>
+				</div>
+			</div>
+			<div class="coupon_data">
+				<p>
+					库存：<span>$!{item.quantity}</span>
+				</p>
+				<p>
+					单价：<input id="price_input" type="text" placeholder="价格不能少于0">
+					元
+				</p>
+			</div>
+		</div>
+		#end
+		<div class="mt50 center">
+			<button class="btn" id="prev">上一步</button>
+			<button class="btn" id="confirm">确定</button>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/couponChoose.js"></script>
+<script>
+	$("#myCoupon_first").attr("class", "first_menu active_menu");
+	$("#myCoupon_put_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+	$(".select_option li").click(function(){
+		selectOption(this);
+	})
+	$("#card_type").val("$!{pageInfo.type}");
+	$("#card_title").val("$!{pageInfo.title}");
+	$("#card_type").text("#if(${pageInfo.type}==1)礼品券#elseif(${pageInfo.type}==2)代金券#elseif(${pageInfo.type}==3)团购券#elseif(${pageInfo.type}==4)折扣券#elseif(${pageInfo.type}==5)优惠券#else全部#end");
+	$("#card_title").text("$!{pageInfo.title}");
+	var cardId="";
+
+	function next(id) {
+		cardId=id;
+		$('.tab1').hide();
+		$('.tab2').show();
+		$('.card_info_table').hide();
+		$('#card_info_'+id).show();
+		$('#price_input').val('');
+		$('.error').remove();
+		$('.step').css('background-color', '#FEC55E');
+		$('#step2 span').css('color', '#fff');
+	}
+	
+	$('#search_btn').click(
+			function() {
+				var type = $("#card_type").val();
+				var title = $("#card_title").val();
+				window.open(ctxPath + "publisher/couponChoose.do?type=" + type
+						+ "&title=" + title, '_self');
+			})
+			
+function updateCostPut() {
+	var cost = $.trim($("#price_input").val());
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "publisher/card/updateCostPut.do",
+		dataType : "json",
+		data : {
+			"cardId" : cardId,
+			"cost" : cost
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					window.open('${rc.contextPath}/publisher/couponPut.do','_self');
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+</script>

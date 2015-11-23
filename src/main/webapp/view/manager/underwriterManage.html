@@ -1,0 +1,151 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css"
+	href="../css/underwriterManage.css">
+#if($!{type_num}>0)
+<header>
+	<a class="tips" href="javascript:view();">本月有$!{type_num}个承销商还未提现，点此立即查看>></a>
+</header>
+#end
+<div class="content">
+	<div class="mt40 clearfix">
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>收入</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{math.sub($!{statInfo.sum},$!{statInfo.charge})},100)})}</p>
+			</div>
+		</div>
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>总分成金额</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.charge},100)})}</p>
+			</div>
+		</div>
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>已提现金额</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{fund.creditAmount},100)})}</p>
+			</div>
+		</div>
+		<div class="cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>未提现金额</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div(${math.sub($!{statInfo.charge},$!{fund.creditAmount})},100)})}</p>
+			</div>
+		</div>
+	</div>
+	<div class="mt50 search clearfix">
+		<div class="search_item">
+			<div class="search_head">用户名：</div>
+			<input class="input_text" type="text" id="user_name">
+		</div>
+		<div class="search_item">
+			<div class="search_head">承销商名称：</div>
+			<input class="input_text" type="text" id="underwriter_name">
+		</div>
+		<div class="search_item">
+			<div class="search_head">提现类型：</div>
+			<div class="input_select" type="text">
+				<span class="input_select_value" id="cost_type">全部</span>
+				<ul class="select_option">
+					<li value="">全部</li>
+					<li value="1">已提现</li>
+					<li value="2">未提现</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<button class="search_btn" id="search_btn">搜索</button>
+	</div>
+	<div>
+		<button class="btn"
+			onclick="window.open('${rc.contextPath}/manager/createUnderwriter.do','_self')">创建账户</button>
+	</div>
+	<div class="mt20 table">
+		<table>
+			<thead>
+				<tr>
+					<th>用户名</th>
+					<th>承销商名称</th>
+					<th>已提现（元）</th>
+					<th>未提现（元）</th>
+					<th>提现状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach(${item} in ${queryInfos})
+				<tr>
+					<td>$!{item.userId}</td>
+					<td>$!{item.name}</td>
+					<td>$!{numeric.toFixedCurrency($!{math.div($!{math.abs($!{item.balance})},100)})}</td>
+					<td>$!{numeric.toFixedCurrency($!{math.div($!{math.abs($!{math.add($!{item.cost},$!{item.balance})})},100)})}</td>
+					<td>#if($!{item.type}==1)已提现#else未提现#end</td>
+					<td>
+						<div>
+							#if($!{item.type}==1)#else <a class="getcash"
+								href="${rc.contextPath}/manager/underwriterGetcash.do?id=$!{item.id}&cost=$!{item.cost}&balance=$!{item.balance}">提现</a><br>#end
+							<br> <a class="edit"
+								href="${rc.contextPath}/manager/underwriterEdit.do?id=$!{item.id}&userId=$!{item.userId}">修改</a>
+						</div>
+						<div>
+							<a class="getdetail"
+								href="${rc.contextPath}/manager/underwriterGetcashdetail.do?id=$!{item.id}">领取明细</a><br>
+							<a class="detail"
+								href="${rc.contextPath}/manager/underwriterDetail.do?id=$!{item.id}&userId=$!{item.userId}&count=$!{item.count}&cost=$!{item.cost}&balance=$!{item.balance}">详情</a>
+						</div>
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	<div class="mt20 paging" id="page"></div>
+</div>
+</div>
+</div>
+<div class="alert" id="charge">
+	<div>
+		<span>充值金额</span> <input id="charge_input" type="text"
+			placeholder="充值金额不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="charge_confirm">确定</button>
+		<button id="charge_cancel">取消</button>
+	</div>
+</div>
+<script type="text/javascript" src="../js/underwriterManage.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_underwriterManage_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+	$(".select_option li").click(function(){
+		selectOption(this);
+	})
+	$("#cost_type").val("$!{pageInfo.type}");
+	$("#user_name").val("$!{pageInfo.userId}");
+	$("#underwriter_name").val("$!{pageInfo.name}");
+	$("#cost_type").text("#if(${pageInfo.type}==1)已提现#elseif(${pageInfo.type}==2)未提现#else全部#end");
+	$("#user_name").text("$!{pageInfo.userId}");
+	$("#underwriter_name").text("$!{pageInfo.name}");
+	var id="";
+	$('#search_btn').click(function() {
+				search();
+	})
+function view(){
+		$('#cost_type').val('2');
+		$('#cost_type').text('未提现');
+		search();
+	}
+function search(){
+		var type = $("#cost_type").val();
+		var user = $("#user_name").val();
+		var name = $("#underwriter_name").val();
+		window.open(ctxPath + "manager/underwriterManage.do?type=" + type + "&user=" + user+ "&name=" + name, '_self');
+
+	}
+</script>

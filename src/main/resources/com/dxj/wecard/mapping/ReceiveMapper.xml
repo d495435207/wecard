@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.ReceiveMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.Receive">
+		<!-- WARNING - @mbggenerated -->
+		<id column="card_id" jdbcType="INTEGER" property="cardId" />
+		<id column="code" jdbcType="VARCHAR" property="code" />
+		<result column="open_id" jdbcType="VARCHAR" property="openId" />
+		<result column="outer_id" jdbcType="VARCHAR" property="outerId" />
+		<result column="at_time" jdbcType="TIMESTAMP" property="atTime" />
+		<result column="cost" jdbcType="INTEGER" property="cost" />
+		<result column="cost_profit" jdbcType="INTEGER" property="costProfit" />
+		<result column="offset_type" jdbcType="INTEGER" property="offsetType" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="is_give_friend" jdbcType="INTEGER" property="isGiveFriend" />
+		<result column="old_code" jdbcType="VARCHAR" property="oldCode" />
+		<result column="friend_open_id" jdbcType="VARCHAR" property="friendOpenId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		card_id, code, open_id, outer_id, at_time, cost, cost_profit,
+		offset_type, longitude,
+		latitude, is_give_friend, old_code,
+		friend_open_id
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.dxj.wecard.model.ReceiveKey"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from receive
+		where card_id = #{cardId,jdbcType=INTEGER}
+		and code =
+		#{code,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.dxj.wecard.model.ReceiveKey">
+		<!-- WARNING - @mbggenerated -->
+		delete from receive
+		where card_id = #{cardId,jdbcType=INTEGER}
+		and code
+		= #{code,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.Receive">
+		<!-- WARNING - @mbggenerated -->
+		insert into receive (card_id, code, open_id,
+		outer_id, at_time, cost,
+		cost_profit, offset_type, longitude,
+		latitude, is_give_friend,
+		old_code,
+		friend_open_id)
+		values (#{cardId,jdbcType=INTEGER},
+		#{code,jdbcType=VARCHAR},
+		#{openId,jdbcType=VARCHAR},
+		#{outerId,jdbcType=VARCHAR}, 
+		#{atTime,jdbcType=TIMESTAMP},
+		#{cost,jdbcType=INTEGER},
+		#{costProfit,jdbcType=INTEGER},
+		#{offsetType,jdbcType=INTEGER},
+		#{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR}, 
+		#{isGiveFriend,jdbcType=INTEGER},
+		#{oldCode,jdbcType=VARCHAR},
+		#{friendOpenId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.Receive">
+		<!-- WARNING - @mbggenerated -->
+		insert into receive
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="outerId != null">
+				outer_id,
+			</if>
+			<if test="atTime != null">
+				at_time,
+			</if>
+			<if test="cost != null">
+				cost,
+			</if>
+			<if test="costProfit != null">
+				cost_profit,
+			</if>
+			<if test="offsetType != null">
+				offset_type,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="isGiveFriend != null">
+				is_give_friend,
+			</if>
+			<if test="oldCode != null">
+				old_code,
+			</if>
+			<if test="friendOpenId != null">
+				friend_open_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cardId != null">
+				#{cardId,jdbcType=INTEGER},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="outerId != null">
+				#{outerId,jdbcType=VARCHAR},
+			</if>
+			<if test="atTime != null">
+				#{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cost != null">
+				#{cost,jdbcType=INTEGER},
+			</if>
+			<if test="costProfit != null">
+				#{costProfit,jdbcType=INTEGER},
+			</if>
+			<if test="offsetType != null">
+				#{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="isGiveFriend != null">
+				#{isGiveFriend,jdbcType=INTEGER},
+			</if>
+			<if test="oldCode != null">
+				#{oldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="friendOpenId != null">
+				#{friendOpenId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Receive">
+		<!-- WARNING - @mbggenerated -->
+		update receive
+		<set>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="outerId != null">
+				outer_id = #{outerId,jdbcType=VARCHAR},
+			</if>
+			<if test="atTime != null">
+				at_time = #{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cost != null">
+				cost = #{cost,jdbcType=INTEGER},
+			</if>
+			<if test="costProfit != null">
+				cost_profit = #{costProfit,jdbcType=INTEGER},
+			</if>
+			<if test="offsetType != null">
+				offset_type = #{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="isGiveFriend != null">
+				is_give_friend = #{isGiveFriend,jdbcType=INTEGER},
+			</if>
+			<if test="oldCode != null">
+				old_code = #{oldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="friendOpenId != null">
+				friend_open_id = #{friendOpenId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where card_id = #{cardId,jdbcType=INTEGER}
+		and code =
+		#{code,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Receive">
+		<!-- WARNING - @mbggenerated -->
+		update receive
+		set open_id = #{openId,jdbcType=VARCHAR},
+		outer_id =
+		#{outerId,jdbcType=VARCHAR},
+		at_time = #{atTime,jdbcType=TIMESTAMP},
+		cost = #{cost,jdbcType=INTEGER},
+		cost_profit =
+		#{costProfit,jdbcType=INTEGER},
+		offset_type =
+		#{offsetType,jdbcType=INTEGER},
+		longitude =
+		#{longitude,jdbcType=VARCHAR},
+		latitude = #{latitude,jdbcType=VARCHAR},
+		is_give_friend = #{isGiveFriend,jdbcType=INTEGER},
+		old_code =
+		#{oldCode,jdbcType=VARCHAR},
+		friend_open_id =
+		#{friendOpenId,jdbcType=VARCHAR}
+		where card_id =
+		#{cardId,jdbcType=INTEGER}
+		and code = #{code,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getReceiveCountByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(app_id) count,sum(cost) sum,sum(cost_profit) charge
+		from
+		(select
+		r.at_time,r.cost,r.cost_profit,c.app_id from receive r left
+		join card c
+		on
+		r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getReceiveCountByUnderwriter" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(r.card_id) count,sum(cost_profit) sum from receive r left
+		join
+		channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="getReceiveCountDateByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(app_id) count,sum(cost) sum,sum(cost_profit) charge
+		from
+		(select
+		r.at_time,r.cost,r.cost_profit,c.app_id from receive r left
+		join card c
+		on
+		r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null">
+			and at_time <![CDATA[<]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+
+	<select id="getReceiveDateAreaByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultMap="BaseResultMap">
+		select
+		r.* from
+		receive r left join card c
+		on
+		r.card_id=c.id
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		order
+		by at_time desc
+	</select>
+
+	<select id="getReceivesRecentByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(app_id) count,sum(cost) sum,at_time atTime
+		from (select
+		c.app_id,r.cost,r.at_time from (select * from (select
+		card_id,cost,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		group by at_time order by at_time desc
+	</select>
+
+	<select id="getReceivesNumCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(cardId) from (
+		select count(r.card_id)
+		count,r.card_id cardId,cw.* from
+		receive r
+		left join
+		(select
+		c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title
+		subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on
+		c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id ) a
+	</select>
+
+	<select id="getReceivesCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select count(r.card_id) count,r.card_id cardId,cw.* from
+		receive r
+		left join
+		(select c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id
+		order by count desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesNumUser" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(cardId) from (
+		select count(r.card_id)
+		count,r.card_id cardId,cw.* from
+		(select card_id from
+		receive group by
+		card_id,open_id
+		) r
+		left join
+		(select c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title
+		subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on
+		c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id ) a
+	</select>
+
+	<select id="getReceivesUser" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select count(r.card_id) count,r.card_id cardId,cw.* from
+		(select card_id from
+		receive group by card_id,open_id
+		) r
+		left join
+		(select c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title
+		subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on
+		c.app_id=w.id) cw
+		on r.card_id=cw.id
+		group by card_id
+		order by count desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesCashNumByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(atTime) from (
+		select count(app_id) count,sum(cost)
+		sum,at_time atTime
+		from (select
+		c.app_id,r.cost,r.at_time from (select *
+		from (select
+		card_id,cost,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		group by at_time ) a
+	</select>
+
+	<select id="getReceivesCashByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(app_id) count,sum(cost) sum,at_time atTime
+		from (select
+		c.app_id,r.cost,r.at_time from (select * from (select
+		card_id,cost,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		group by at_time order by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesCashNumByUnderwriter" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(atTime) from (
+		select count(r.card_id)
+		count,sum(cost_profit) sum,at_time atTime from
+		(select * from (select
+		card_id,cost_profit,outer_id,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive ) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		group by at_time ) a
+	</select>
+
+	<select id="getReceivesCashByUnderwriter" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(r.card_id) count,sum(cost_profit) sum,at_time atTime from
+		(select * from (select
+		card_id,cost_profit,outer_id,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		group by at_time order by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesCashByUnderwriterAll" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(r.card_id) count,sum(cost_profit) sum,at_time atTime from
+		(select * from (select
+		card_id,cost_profit,outer_id,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		group by at_time order by at_time desc
+	</select>
+
+	<select id="getReceivesCashDetailNumByUnderwriter"
+		parameterType="com.dxj.wecard.bean.Query" resultType="java.lang.Integer">
+		select count(atTime) from (select card.cost,cost_profit
+		charge,title,rc.at_time atTime from (select r.* from
+		(select * from
+		(select
+		card_id,cost,cost_profit,outer_id,at_time from receive) b where
+		1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		) rc left join card on rc.card_id=card.id
+		order by at_time desc) a
+	</select>
+
+	<select id="getReceivesCashDetailByUnderwriter" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select card.cost,cost_profit charge,title,rc.at_time atTime from (select r.*
+		from
+		(select * from (select
+		card_id,cost,cost_profit,outer_id,at_time
+		from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		) rc left join card on rc.card_id=card.id
+		order by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesCashDetailByUnderwriterAll"
+		parameterType="com.dxj.wecard.bean.Query" resultType="com.dxj.wecard.bean.BizQuery">
+		select card.cost,cost_profit charge,title,rc.at_time atTime from (select r.*
+		from
+		(select * from (select
+		card_id,cost,cost_profit,outer_id,at_time
+		from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r left join channel c on r.outer_id=c.id
+		where 1=1
+		<if test="id != null">
+			and c.partner_id = #{id,jdbcType=INTEGER}
+		</if>
+		) rc left join card on rc.card_id=card.id
+		order by at_time desc
+	</select>
+
+	<select id="getReceivesCashByAppAll" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.Query">
+		select count(app_id) count,sum(cost) sum,at_time atTime
+		from (select
+		c.app_id,r.cost,r.at_time from (select * from (select
+		card_id,cost,str_to_date(date_format(at_time,"%Y-%m_%d"),"%Y-%m_%d")
+		at_time from receive) b where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<=]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) t
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		group by at_time order by at_time desc
+	</select>
+
+	<select id="getCardsReceiveNumByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(atTime) from (
+		select rc.at_time
+		atTime,wu.nick_name
+		name,wu.head_img logo
+		from (select r.*,c.app_id
+		from (select
+		card_id,at_time,open_id from
+		receive where 1=1
+		<if test="id != null">
+			and card_id = #{id,jdbcType=INTEGER}
+		</if>
+		) r left join card c on r.card_id=c.id )
+		rc
+		left join weixin_user wu on
+		rc.app_id=wu.app_id and
+		rc.open_id=wu.open_id ) a
+	</select>
+
+	<select id="getCardsReceiveByApp" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select rc.at_time atTime,wu.nick_name name,wu.head_img logo
+		from
+		(select r.*,c.app_id from (select card_id,at_time,open_id from
+		receive
+		where 1=1
+		<if test="id != null">
+			and card_id = #{id,jdbcType=INTEGER}
+		</if>
+		) r left join card c on
+		r.card_id=c.id ) rc
+		left join weixin_user wu on
+		rc.app_id=wu.app_id and
+		rc.open_id=wu.open_id
+		order by at_time desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesNumByPublisherSpendDetail" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select
+		count(id)
+		from (select a.app_id appId,a.id,a.title
+		title,a.cost,a.at_time
+		atTime,b.company name from
+		(select * from
+		(select
+		c.app_id,c.id,c.title,r.cost,at_time from
+		(select
+		card_id,cost,at_time
+		from receive where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) rc where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		) a
+		left join (
+		select
+		weixin_app.id app_id,p.id,p.company from
+		weixin_app
+		left join partner p on
+		weixin_app.partner_id=p.id
+		) b
+		on
+		a.app_id=b.app_id) ab
+	</select>
+
+	<select id="getReceivesByPublisherSpendDetail" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select a.app_id appId,a.id,a.title
+		title,a.cost,a.at_time
+		atTime,b.company name from
+		(select * from
+		(select
+		c.app_id,c.id,c.title,r.cost,at_time from
+		(select
+		card_id,cost,at_time
+		from receive where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) rc where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		) a
+		left join (
+		select
+		weixin_app.id app_id,p.id,p.company from
+		weixin_app
+		left join partner p on
+		weixin_app.partner_id=p.id
+		) b
+		on
+		a.app_id=b.app_id
+		order
+		by
+		at_time
+		desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getReceivesByPublisherSpendDetailAll" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select a.app_id appId,a.id,a.title
+		title,a.cost,a.at_time
+		atTime,b.company name from
+		(select * from
+		(select
+		c.app_id,c.id,c.title,r.cost,at_time from
+		(select
+		card_id,cost,at_time
+		from receive where 1=1
+		<if test="startTime != null">
+			and at_time <![CDATA[>=]]>
+			#{startTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endTime != null">
+			and at_time <![CDATA[<]]>
+			#{endTime,jdbcType=TIMESTAMP}
+		</if>
+		) r
+		left join card c on r.card_id=c.id) rc where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		) a
+		left join (
+		select
+		weixin_app.id app_id,p.id,p.company from
+		weixin_app
+		left join partner p on
+		weixin_app.partner_id=p.id
+		) b
+		on
+		a.app_id=b.app_id
+		order
+		by
+		at_time
+		desc
+	</select>
+</mapper>

@@ -1,0 +1,55 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css"
+	href="../css/underwriterDetail.css">
+<div class="content">
+	<div class="mt30 form_content">
+		<div>
+			<span class="input_head"> 用户名： </span> <span>$!{pageInfo.userId}</span>
+		</div>
+		<div>
+			<span class="input_head"> 承销商名称： </span> <span>$!{partner.company}</span>
+		</div>
+		<div>
+			<span class="input_head"> 分成占比： </span> <span>$!{partner.shareRate}%</span>
+		</div>
+		<div>
+			<span class="input_head"> ID： </span> <span>$!{partner.devId}</span>
+		</div>
+		<div>
+			<span class="input_head"> Secret： </span> <span>$!{partner.devSecret}</span>
+		</div>
+		<div>
+			<span class="input_head"> 银行名称： </span> <span>$!{partner.bankName}</span>
+		</div>
+		<div>
+			<span class="input_head"> 收款方： </span> <span>$!{partner.payee}</span>
+		</div>
+		<div>
+			<span class="input_head"> 开户行名称： </span> <span>$!{partner.openingBankName}</span>
+		</div>
+		<div>
+			<span class="input_head"> 银行账号： </span> <span>$!{partner.bankAccount}</span>
+		</div>
+		<div>
+			<span class="input_head"> 卡券领取数： </span> <span>$!{pageInfo.count}</span>
+		</div>
+		<div>
+			<span class="input_head"> 分成金额： </span> <span>$!{numeric.toFixedCurrency($!{math.div($!{pageInfo.cost},100)})}</span>元
+		</div>
+		<div>
+			<span class="input_head"> 已提现金额： </span> <span>$!{numeric.toFixedCurrency($!{math.div($!{math.abs($!{pageInfo.balance})},100)})}</span>元
+		</div>
+		<div>
+			<span class="input_head"> 未提现金额： </span> <span>$!{numeric.toFixedCurrency($!{math.div($!{math.abs($!{math.add($!{pageInfo.cost},$!{pageInfo.balance})})},100)})}</span>元
+		</div>
+		<div class="center">
+			<button class="btn" onclick="javascript:history.back();">返回</button>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_underwriterManage_second").attr("class", "active_second_menu");
+</script>

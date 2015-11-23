@@ -1,0 +1,83 @@
+.tip {
+	height: 78px;
+	border: 1px solid #feae1b;
+	padding: 0 20px;
+	background-color: #fff7c3;
+}
+
+.tip p {
+	font-size: 14px;
+	color: #ab6612;
+}
+
+.coupon_list {
+	padding: 0 20px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.coupon_item {
+	padding: 10px 0; 
+	border-bottom: 1px solid #ccc;
+}
+
+.coupon_item:last-child {
+	border-bottom: 0;
+}
+
+.coupon_show {
+	float: left;
+	padding: 10px 20px;
+	width: 260px;
+	height: 80px;
+	border-radius: 10px;
+}
+
+.coupon_show .coupon_logo {
+	float: left;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	overflow: hidden;
+}
+
+.coupon_show .coupon_logo img {
+	width: 70px;
+}
+
+.coupon_show .coupon_detail {
+	width: 260px;
+	text-align: center;
+}
+
+.coupon_show .coupon_detail p {
+	font-family: '微软雅黑';
+	color: #fff;
+	margin-top: 3px;
+	font-size: 16px;
+}
+
+.coupon_show .coupon_detail p:nth-child(2) {
+	font-size: 18px;
+}
+
+.coupon_data {
+	float: left;
+	width: 150px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.coupon_data p {
+	font-size: 14px;
+	margin-bottom: 14px;
+}
+
+.coupon_op {
+	margin-top: 10px;
+}
+
+.error {
+	top: 36px;
+	left: 55px;
+}

@@ -1,0 +1,91 @@
+.item {
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 20px 10px 10px 10px;
+	position: relative;
+}
+
+.hide_coupon {
+	height: 360px;
+	overflow: hidden;
+}
+
+.medals {
+	position: absolute;
+	top: 54px;
+	left: 236px;
+}
+
+.medals img {
+	margin-right: 232px;
+}
+
+.medals img:last-child {
+	margin-right: 0;
+}
+
+.coupon_title {
+	font-size: 18px;
+	font-family: '微软雅黑';
+	color: #393939;
+}
+
+.coupon_title .more {
+	float: right;
+	font-size: 14px;
+	color: #1b9af7;
+	cursor: pointer;
+}
+
+.coupon_show {
+	float: left;
+	padding: 20px 0;
+	width: 270px;
+	height: 108px;
+	border-radius: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.coupon_show .coupon_content {
+	height: 100px;
+	border-bottom: 1px solid #fff;
+}
+
+.coupon_show .coupon_logo {
+	float: left;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	overflow: hidden;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.coupon_show .coupon_logo img {
+	width: 70px;
+}
+
+.coupon_show .coupon_detail {
+	width: 260px;
+	text-align: left;
+}
+
+.coupon_show .coupon_detail p {
+	color: #fff;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.coupon_show .coupon_detail p:nth-child(2) {
+	font-size: 18px;
+}
+
+.coupon_show .coupon_data {
+	padding: 3px 20px;
+}
+
+.coupon_show .coupon_data span {
+	font-size: 14px;
+	color: #fff;
+}

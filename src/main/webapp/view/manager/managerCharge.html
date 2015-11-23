@@ -1,0 +1,42 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/couponChoose.css">
+<div class="content">
+	<div class="mt30 table">
+		<table>
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>充值时间</th>
+					<th>充值金额（元）</th>
+					<th>账户余额（元）</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach(${item} in ${queryInfos})
+				<tr>
+					<td>$!{math.add(${math.mul(${math.sub(${pageInfo.page},1)},${pageInfo.size})},${foreach.count})}</td>
+					<td>$!{date.format('yyyy-MM-dd HH:mm:ss',$!{item.atTime})}</td>
+					<td>$!{numeric.toFixedCurrency(${math.div($!{item.sum},100)})}</td>
+					<td>#if(${pageInfo.page}==1&&${foreach.count}==1)
+						$!{numeric.toFixedCurrency(${math.div(${math.sub(${math.sub($!{fund.debitAmount},$!{fund.creditAmount})},$!{statInfo.sum})},100)})}
+						#else
+						$!{numeric.toFixedCurrency(${math.div($!{item.balance},100)})}
+						#end</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	<div class="mt20 mb30">
+		<div class="paging" id="page"></div>
+		<button class="btn"
+			onclick="window.open('${rc.contextPath}/manager/publisherManage.do','_self')">返回</button>
+	</div>
+</div>
+
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_publisherManage_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+</script>

@@ -1,0 +1,104 @@
+.step {
+	height: 48px;
+	border: 1px solid #ccc;
+	border-radius: 24px;
+}
+
+.step1,.step2 {
+	width: 411px;
+	height: 50px;
+	display: inline-block;
+	font-size: 20px;
+	color: #fff;
+	text-align: center;
+}
+
+.step span {
+	display: inline-block;
+	font-size: 20px;
+	color: #fff;
+	margin-top: 10px;
+}
+
+.step1 {
+	background: url(../images/step_bg.png) -1px -1px no-repeat;
+}
+
+.step2 span {
+	color: #646464;
+}
+
+.paging + button {
+	margin: 0;
+}
+
+.coupon_show {
+	float: left;
+	padding: 10px 20px;
+	width: 260px;
+	height: 80px;
+	border-radius: 10px;
+}
+
+.coupon_show .coupon_logo {
+	float: left;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	overflow: hidden;
+}
+
+.coupon_show .coupon_logo img {
+	width: 70px;
+}
+
+.coupon_show .coupon_detail {
+	width: 260px;
+	text-align: center;
+}
+
+.coupon_show .coupon_detail p {
+	color: #fff;
+	margin-top: 3px;
+	font-size: 16px;
+}
+
+.coupon_show .coupon_detail p:nth-child(2) {
+	font-size: 18px;
+}
+
+.coupon_data {
+	float: left;
+	margin-left: 60px;
+}
+
+.coupon_data p {
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+.coupon_data input {
+	width: 154px;
+	height: 32px;
+	font-size: 16px;
+	padding-left: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: 0;
+}
+
+.error {
+	top: 42px;
+	left: 48px;
+}
+
+.tab2 {
+	display: none;
+	width: 610px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center .btn {
+	width: 115px;
+}

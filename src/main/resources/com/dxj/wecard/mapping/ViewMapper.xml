@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.ViewMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.View">
+		<!-- WARNING - @mbggenerated -->
+		<id column="open_id" jdbcType="VARCHAR" property="openId" />
+		<id column="card_id" jdbcType="INTEGER" property="cardId" />
+		<result column="at_time" jdbcType="TIMESTAMP" property="atTime" />
+		<result column="offset_type" jdbcType="INTEGER" property="offsetType" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		open_id, card_id, at_time, offset_type, longitude, latitude
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.dxj.wecard.model.ViewKey"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from view
+		where open_id = #{openId,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.dxj.wecard.model.ViewKey">
+		<!-- WARNING - @mbggenerated -->
+		delete from view
+		where open_id = #{openId,jdbcType=VARCHAR}
+		and card_id
+		= #{cardId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.View">
+		<!-- WARNING - @mbggenerated -->
+		insert into view (open_id, card_id, at_time,
+		offset_type, longitude,
+		latitude
+		)
+		values (#{openId,jdbcType=VARCHAR},
+		#{cardId,jdbcType=INTEGER},
+		#{atTime,jdbcType=TIMESTAMP},
+		#{offsetType,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.View">
+		<!-- WARNING - @mbggenerated -->
+		insert into view
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="atTime != null">
+				at_time,
+			</if>
+			<if test="offsetType != null">
+				offset_type,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=INTEGER},
+			</if>
+			<if test="atTime != null">
+				#{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="offsetType != null">
+				#{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.View">
+		<!-- WARNING - @mbggenerated -->
+		update view
+		<set>
+			<if test="atTime != null">
+				at_time = #{atTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="offsetType != null">
+				offset_type = #{offsetType,jdbcType=INTEGER},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where open_id = #{openId,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.View">
+		<!-- WARNING - @mbggenerated -->
+		update view
+		set at_time = #{atTime,jdbcType=TIMESTAMP},
+		offset_type =
+		#{offsetType,jdbcType=INTEGER},
+		longitude =
+		#{longitude,jdbcType=VARCHAR},
+		latitude = #{latitude,jdbcType=VARCHAR}
+		where open_id = #{openId,jdbcType=VARCHAR}
+		and card_id =
+		#{cardId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getViewsNumCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="java.lang.Integer">
+		select count(id) from (select c.view_cnt
+		count,c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title
+		subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on
+		c.app_id=w.id) a
+	</select>
+
+	<select id="getViewsCnt" parameterType="com.dxj.wecard.bean.Query"
+		resultType="com.dxj.wecard.bean.BizQuery">
+		select c.view_cnt count,c.id,c.app_id
+		appId,c.cost,c.title,c.sub_title
+		subTitle,c.color,w.logo,w.name from
+		card c left join
+		weixin_app w on
+		c.app_id=w.id
+		order by count desc
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+</mapper>

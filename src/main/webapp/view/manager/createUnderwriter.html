@@ -1,0 +1,73 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css"
+	href="../css/creatUnderwriter.css">
+<div class="mt30 content">
+	<div class="form_content">
+		<p class="form_head">基本信息</p>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 用户名：
+			</span> <input class="text_input" id="phone" type="text"
+				placeholder="请输入手机号码">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 密码：
+			</span> <input class="text_input" id="password" type="password"
+				placeholder="请输入6-18位密码、字母、非空字符" maxlength="18"> <input
+				id="password_temp" type="hidden">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 确认密码：
+			</span> <input class="text_input" id="repassword" type="password"
+				placeholder="请输入6-18位密码、字母、非空字符" maxlength="18">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 承销商名称：
+			</span> <input class="text_input" id="name" type="text"
+				placeholder="不超过15个字" maxlength="15">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 分成占比：
+			</span>
+			<div class="input_select">
+				<span class="input_select_value" id="percent"></span>
+				<ul class="select_option">
+					<li value="">--请选择--</li>
+					<li value="10">10%</li>
+					<li value="20">20%</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<p class="mt50 form_head">财务信息</p>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 银行名称：
+			</span> <input class="text_input" id="bank" type="text">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 收款方：
+			</span> <input class="text_input" id="beneficiary" type="text">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 开户行名称：
+			</span> <input class="text_input" id="bank_name" type="text">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 银行账号：
+			</span> <input class="text_input" id="bank_account" type="text">
+		</div>
+	</div>
+	<div class="mt40 mb30 center">
+		<button class="btn" id="confirm">确定</button>
+		<button class="btn" id="cancel">取消</button>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/creatUnderwriter.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_underwriterManage_second").attr("class", "active_second_menu");
+	$(".select_option li").click(function() {
+		selectOption(this);
+	})
+</script>

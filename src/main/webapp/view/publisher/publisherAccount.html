@@ -1,0 +1,122 @@
+#set($layout='layout/defaultPublisher.html')
+<link rel="stylesheet" type="text/css" href="../css/account.css">
+<div class="content">
+	<input id="wx_state" type="hidden" value="$!{weixinApp.isAuth}">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span id="tabspan1">基本信息</span> <span id="tabspan2">公众号信息</span> <span
+				class="slidespan" id="slidespan"></span>
+		</div>
+		<div class="tab1" id="tab1">
+			<div>
+				<span class="form_head">用户名：</span> <span>$!{userId}</span>
+			</div>
+			<div class="mt40">
+				<span class="form_head">联系人：</span> <input class="long_input"
+					id="people" type="text" disabled value="$!{partner.contacts}"
+					placeholder="请输入联系人姓名">
+			</div>
+			<div class="mt40">
+				<span class="form_head">商家名称：</span> <input class="long_input"
+					id="name" type="text" disabled value="$!{partner.company}"
+					placeholder="不超过15个字" maxlength="15">
+			</div>
+			<div class="mt40">
+				<span class="form_head">电子邮箱：</span> <input class="long_input"
+					id="email" type="text" disabled value="$!{partner.mail}"
+					placeholder="请输入电子邮箱">
+			</div>
+			<div class="mt40">
+				<span class="form_head">联系地址：</span> <span id="add_span">$!{province.name}$!{city.name}$!{district.name}$!{partner.address}</span>
+				<div class="add" id="add">
+					<div class="input_select" type="text">
+						<span class="input_select_value" id="province">省份</span>
+						<ul class="select_option">
+						</ul>
+						<span class="arrow" src="images/arrow.png"
+							style="transform: rotate(0deg);"></span>
+					</div>
+					<div class="input_select" type="text">
+						<span class="input_select_value" id="city">地级市</span>
+						<ul class="select_option">
+						</ul>
+						<span class="arrow" src="images/arrow.png"
+							style="transform: rotate(0deg);"></span>
+					</div>
+					<div class="input_select" type="text">
+						<span class="input_select_value" id="area">县区</span>
+						<ul class="select_option">
+						</ul>
+						<span class="arrow" src="images/arrow.png"
+							style="transform: rotate(0deg);"></span>
+					</div>
+					<div>
+						<input class="mt20 long_input" id="address" type="text"
+							value="$!{partner.address}"
+							placeholder="请勿重复填写省市区，精确到门牌号，不超过32个字" maxlength="32">
+					</div>
+				</div>
+			</div>
+			<div class="center" id="edit_button">
+				<button class="btn" id="edit">修改</button>
+			</div>
+			<div class="mt50 center hide" id="op_button">
+				<button class="btn" id="confirm">确定</button>
+				<button class="btn" id="cancel">取消</button>
+			</div>
+		</div>
+		<div class="tab2" id="tab2">
+			<div class="center" id="wx_state1">
+				<p class="tip">您的微信公众号还未授权，只有授权后才能创建和同步您的微信卡券，点击下方按钮进行授权。</p>
+				<button class="wx_img">
+					<img src="../images/wx_img.png">
+				</button>
+			</div>
+			<div class="wx_data" id="wx_state2">
+				<div>
+					<span class="data_head">公众号名称：</span> <span>$!{weixinApp.name}</span>
+				</div>
+				<div>
+					<span class="data_head">公众号LOGO：</span> <img
+						src="$!{weixinApp.logo}">
+				</div>
+				<div>
+					<span class="data_head">公众号二维码：</span> <img
+						src="$!{weixinApp.qrcode}">
+				</div>
+				<div>
+					<span class="data_head">微信号：</span> <span>$!{weixinApp.code}</span>
+				</div>
+				<div>
+					<span class="data_head">公众号原始ID：</span> <span>$!{weixinApp.rawId}</span>
+				</div>
+				<div>
+					<span class="data_head">AppID：</span> <span>$!{weixinApp.id}</span>
+				</div>
+				<div>
+					<span class="data_head">AppSecret：</span> <span>$!{weixinApp.appSecret}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/account.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_account_second").attr("class", "active_second_menu");
+	loadArea("province", 0);
+	if($!{province.id}){
+		loadArea("city", $!{province.id});
+		if($!{city.id}){
+			loadArea("area", $!{city.id});
+		}
+	}
+	$('#province').text(#if($!{province.name})"$!{province.name}"#else"省市"#end);
+	$('#province').val(#if($!{province.id})"$!{province.id}"#else""#end);
+	$('#city').text(#if($!{city.name})"$!{city.name}"#else"地级市"#end);
+	$('#city').val(#if($!{city.id})"$!{city.id}"#else""#end);
+	$('#area').text(#if($!{district.name})"$!{district.name}"#else"县区"#end);
+	$('#area').val(#if($!{district.id})"$!{district.id}"#else""#end);
+</script>

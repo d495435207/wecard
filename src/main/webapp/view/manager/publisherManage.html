@@ -1,0 +1,146 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/manage.css">
+<div class="content">
+	<div class="mt40 clearfix">
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>总账户数</p>
+				<p>$!{numeric.toFixedNumber($!{statInfo.count})}</p>
+			</div>
+		</div>
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>总账户余额</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.balance},100)})}</p>
+			</div>
+		</div>
+		<div class="mr10 cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>总消耗</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.cost},100)})}</p>
+			</div>
+		</div>
+		<div class="cell">
+			<span class="icon"></span>
+			<div class="message">
+				<p>总充值金额</p>
+				<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.charge},100)})}</p>
+			</div>
+		</div>
+	</div>
+	<div class="mt50 search clearfix">
+		<div class="search_item">
+			<div class="search_head">用户名：</div>
+			<input class="input_text" type="text" id="user_name">
+		</div>
+		<div class="search_item">
+			<div class="search_head">公众号名称：</div>
+			<input class="input_text" type="text" id="app_name">
+		</div>
+		<button class="search_btn" id="search_btn">搜索</button>
+	</div>
+	<div>
+		<button class="btn"
+			onclick="window.open('${rc.contextPath}/manager/createPublisher.do','_self')">创建账户</button>
+	</div>
+	<div class="mt20 table">
+		<table>
+			<thead>
+				<tr>
+					<th>用户名</th>
+					<th>公众号名称</th>
+					<th>开户时间</th>
+					<th>账户余额（元）</th>
+					<th>消耗（元）</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach(${item} in ${queryInfos})
+				<tr>
+					<td>$!{item.userId}</td>
+					<td>$!{item.name}</td>
+					<td>$!{date.format('yyyy-MM-dd',$!{item.atTime})}</td>
+					<td>$!{numeric.toFixedCurrency(${math.div($!{item.balance},100)})}</td>
+					<td>$!{numeric.toFixedCurrency(${math.div($!{item.cost},100)})}</td>
+					<td><a class="charge"
+						href="javascript:id=$!{item.id};alertWindow('charge');">充值</a>&nbsp;&nbsp;
+						<a class="charge_detail"
+						href="${rc.contextPath}/manager/managerCharge.do?id=$!{item.id}&appId=$!{item.appId}">充值明细</a>&nbsp;&nbsp;
+						<a class="deleteAccount"
+						href="javascript:partnerId=$!{item.id},userId=$!{item.userId};alertWindow('deleteAccount');">删除</a></td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	<div class="mt20 paging" id="page"></div>
+</div>
+</div>
+</div>
+<div class="alert" id="charge">
+	<div>
+		<span>充值金额</span> <input id="charge_input" type="text"
+			placeholder="充值金额不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="charge_confirm">确定</button>
+		<button id="charge_cancel">取消</button>
+	</div>
+</div>
+<div class="alert" id="deleteAccount">
+	<div>
+		<span>确认删除用户！</span>
+	</div>
+	<div class="mt40 center">
+		<button id="deleteAccount_confirm">删除</button>
+		<button id="deleteAccount_cancel">取消</button>
+	</div>
+</div>
+<script type="text/javascript" src="../js/manage.js"></script>
+<script type="text/javascript" src="../js/deleteAccount.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_publisherManage_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+	$("#user_name").val("$!{pageInfo.userId}");
+	$("#app_name").val("$!{pageInfo.name}");
+	$("#user_name").text("$!{pageInfo.userId}");
+	$("#app_name").text("$!{pageInfo.name}");
+	var id="";
+	$('#search_btn').click(
+			function() {
+				var user = $("#user_name").val();
+				var name = $("#app_name").val();
+				window.open(ctxPath + "manager/publisherManage.do?user=" + user + "&name=" + name, '_self');
+			})
+			
+			
+function updateCharge() {
+	var charge = $.trim($("#charge_input").val());
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "manager/updateCharge.do",
+		dataType : "json",
+		data : {
+			"id" : id,
+			"charge" : charge
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					location.reload();
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+</script>

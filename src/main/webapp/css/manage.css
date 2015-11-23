@@ -1,0 +1,67 @@
+.cell {
+	display: inline-block;
+	float: left;
+	width: 205px;
+	height: 100px;
+	background-color: #fff;
+}
+
+.cell:hover {
+	box-shadow: 0 1px 7px 1px #ccc;
+}
+
+.icon {
+	display: inline-block;
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin: 26px 16px 26px 14px;
+	border-radius: 25px;
+}
+
+.message {
+	display: inline-block;
+	width: 110px;
+	margin-top: 20px;
+	text-align: center;
+	font-family: '微软雅黑';
+}
+
+.message p:first-child {
+	font-size: 16px;
+}
+
+.message p:nth-child(2) {
+	margin-top: 8px;
+	font-size: 18px;
+}
+
+.message p:nth-child(3) {
+	font-size: 14px;
+	color: #ff7284;
+}
+
+.cell:nth-child(1) .icon {
+	background: #7ecffe url(../images/icon.png) -134px 8px no-repeat;
+}
+
+.cell:nth-child(2) .icon {
+	background: #f5d349 url(../images/icon.png) -234px 10px no-repeat;
+}
+
+.cell:nth-child(3) .icon {
+	background: #7bdbc2 url(../images/icon.png) -383px -40px no-repeat;
+}
+
+.cell:nth-child(4) .icon {
+	background: #f894a1 url(../images/icon.png) -333px 6px no-repeat;
+}
+
+.alert {
+	width: 260px;
+	margin-left: -130px;
+}
+
+.error {
+	left: 88px;
+}

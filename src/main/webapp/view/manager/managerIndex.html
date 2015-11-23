@@ -1,0 +1,71 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<div class="mt40 ml25 clearfix">
+	<div class="mr10 cell income">
+		<span class="icon"></span>
+		<div class="message">
+			<p>收入</p>
+			<p>￥$!{numeric.toFixedCurrency(${math.div($!{math.sub($!{statInfo.sum},$!{statInfo.charge})},100)})}</p>
+		</div>
+	</div>
+	<div class="mr10 cell">
+		<span class="icon"></span>
+		<div class="message">
+			<p>账户余额</p>
+			<p>￥$!{numeric.toFixedCurrency(${math.div(${math.sub($!{fund.debitAmount},$!{fund.creditAmount})},100)})}</p>
+		</div>
+	</div>
+	<div class="mr10 cell">
+		<span class="icon"></span>
+		<div class="message">
+			<p>微信卡券</p>
+			<p>$!{numeric.toFixedNumber($!{cardCount})}</p>
+		</div>
+	</div>
+	<div class="cell">
+		<span class="icon"></span>
+		<div class="message">
+			<p>已上架卡券</p>
+			<p>$!{numeric.toFixedNumber($!{cardUpCount})}</p>
+		</div>
+	</div>
+</div>
+<div class="mt40 ml25 clearfix">
+	<div class="data">
+		<p>昨日消耗</p>
+		<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfos.get(0).sum},100)})}</p>
+	</div>
+	<div class="data">
+		<p>昨日卡券领取数</p>
+		<p>$!{numeric.toFixedNumber($!{statInfos.get(0).count})}</p>
+	</div>
+	<div class="data">
+		<p>历史消耗</p>
+		<p>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.sum},100)})}</p>
+	</div>
+	<div class="data">
+		<p>历史卡券领取数</p>
+		<p>$!{numeric.toFixedNumber($!{statInfo.count})}</p>
+	</div>
+</div>
+<div class="mt40 ml25 clearfix">
+	<ul class="tab clearfix" id="tab_border">
+		<li class="tab_active">卡券领取数</li>
+		<li>消耗</li>
+	</ul>
+	<div class="slide" id="slide_border"></div>
+	<div class="mt10 chart" id="chart1"></div>
+	<div class="mt10 chart" id="chart2"></div>
+</div>
+<div>
+<script type="text/javascript" src="../js/index.js"></script>
+</div>
+<script>
+$("#home_first").attr("class", "first_menu active_menu"); 
+var chartData1=new Array();
+var chartData2=new Array();
+#foreach(${item} in ${statInfos})
+	chartData1.push(${item.count});
+    chartData2.push(${item.sum});
+#end
+</script>

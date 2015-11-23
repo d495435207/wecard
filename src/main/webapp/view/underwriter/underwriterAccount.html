@@ -1,0 +1,98 @@
+#set($layout='layout/defaultUnderwriter.html')
+<link rel="stylesheet" type="text/css"
+	href="../css/underwriterAccount.css">
+<div class="content">
+	<input id="wx_state" type="hidden" value="0">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span id="tabspan1">基本信息</span> <span id="tabspan2">财务信息</span> <span
+				class="slidespan" id="slidespan"></span>
+		</div>
+		<div class="tab1" id="tab1">
+			<div>
+				<span class="form_head">用户名：</span> <span>$!{userId}</span>
+			</div>
+			<div class="mt40">
+				<span class="form_head">承销商名称：</span> <span>$!{partner.company}</span>
+			</div>
+			<div class="mt40">
+				<span class="form_head">分成占比：</span> <span>$!{partner.shareRate}%</span>
+			</div>
+			<div class="mt40">
+				<span class="form_head">ID：</span> <span>$!{partner.devId}</span>
+			</div>
+			<div class="mt40">
+				<span class="form_head">Secret：</span> <span>$!{partner.devSecret}</span>
+			</div>
+		</div>
+		<div class="tab2" id="tab2">
+			<div>
+				<span class="form_head"> <span class="red hide">*</span>
+					银行名称：
+				</span> <input class="long_input" id="bank" type="text" disabled
+					value="$!{partner.bankName}">
+			</div>
+			<div class="mt40">
+				<span class="form_head"> <span class="red hide">*</span> 收款方：
+				</span> <input class="long_input" id="beneficiary" type="text" disabled
+					value="$!{partner.payee}">
+			</div>
+			<div class="mt40">
+				<span class="form_head"> <span class="red hide">*</span>
+					开户行名称：
+				</span> <input class="long_input" id="bank_name" type="text" disabled
+					value="$!{partner.openingBankName}">
+			</div>
+			<div class="mt40">
+				<span class="form_head"> <span class="red hide">*</span>
+					银行账号：
+				</span> <input class="long_input" id="bank_account" type="text" disabled
+					value="$!{partner.bankAccount}">
+			</div>
+			<div class="mt50 center" id="edit_button">
+				<button class="btn" id="edit">修改</button>
+			</div>
+			<div class="mt50 center hide" id="op_button">
+				<button class="btn" id="confirm">确定</button>
+				<button class="btn" id="cancel">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/underwriterAccount.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_account_second").attr("class", "active_second_menu");
+
+	function updateUnderwriter() {
+		var bank = $.trim($("#bank").val());
+		var beneficiary = $.trim($("#beneficiary").val());
+		var bank_name = $.trim($("#bank_name").val());
+		var bank_account = $.trim($("#bank_account").val());
+		var partner = {
+			"bankName" : bank,
+			"payee" : beneficiary,
+			"openingBankName" : bank_name,
+			"bankAccount" : bank_account
+		};
+		$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : ctxPath + "underwriter/updateUnderwriter.do",
+			dataType : "json",
+			data : JSON.stringify(partner),
+			success : function(data) {
+				if (data.res == "success") {
+					if (data.code == "1000") {
+					} else {
+						alert(data.msg);
+					}
+				} else {
+					alert(data.msg);
+				}
+			}
+		});
+	}
+</script>

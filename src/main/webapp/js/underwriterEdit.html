@@ -1,0 +1,68 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/underwriterEdit.css">
+<div class="content">
+	<div class="mt30 form_content">
+		<div>
+			<span class="input_head"> 用户名： </span> <span>$!{pageInfo.userId}</span>
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 承销商名称：
+			</span> <input class="text_input" id="name" type="text"
+				placeholder="不超过15个字" maxlength="15" value="$!{partner.company}">
+		</div>
+		<div>
+			<span class="input_head"> <span class="red">*</span> 分成占比：
+			</span>
+			<div class="input_select">
+				<span class="input_select_value" id="percent"></span>
+				<ul class="select_option">
+					<li value="">--请选择--</li>
+					<li value="10">10%</li>
+					<li value="20">20%</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<div class="center">
+			<button class="btn" id="confirm">确定</button>
+			<button class="btn" id="cancel">取消</button>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/underwriterEdit.js"></script>
+<script>
+$("#system_first").attr("class", "first_menu active_menu"); 
+$("#system_underwriterManage_second").attr("class", "active_second_menu"); 
+$(".select_option li").click(function() {
+	selectOption(this);
+})
+$("#percent").val("$!{partner.shareRate}");
+$("#percent").text("#if(${partner.shareRate}==10)10%#elseif(${partner.shareRate}==20)20%#else--请选择--#end");
+	function updateUnderwriter() {
+		var percent = $.trim($("#percent").val());
+		var name = $.trim($("#name").val());
+		$.ajax({
+			type : "POST",
+			url : ctxPath + "manager/underwriterDoEdit.do",
+			dataType : "json",
+			data : {
+				"id" : $!{pageInfo.id},
+				"name" : name,
+				"rate" : percent
+			},
+			success : function(data) {
+				if (data.res == "success") {
+					if (data.code == "1000") {
+						window.open('${rc.contextPath}/manager/underwriterManage.do','_self');
+					} else {
+						alert(data.msg);
+					}
+				} else {
+					alert(data.msg);
+				}
+			}
+		});
+	}
+</script>

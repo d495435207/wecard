@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="../css/detail.css">
+<div class="body">
+	<div class="head">
+		核销明细 <span class="close_button">×</span>
+	</div>
+	<div class="table">
+		<table>
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>核销人头像</th>
+					<th>核销人昵称</th>
+					<th>核销时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach(${item} in ${queryInfos})
+				<tr>
+					<td>${math.add(${math.mul(${math.sub(${pageInfo.page},1)},${pageInfo.size})},${foreach.count})}</td>
+					<td><img src="$!{item.logo}"></td>
+					<td>$!{item.name}</td>
+					<td>$!{date.format('yyyy-MM-dd',$!{item.atTime})}<br>$!{date.format('HH:mm:ss',$!{item.atTime})}
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	<div class="mt20 paging" id="page"></div>
+</div>
+<script type="text/javascript" src="../js/detail.js"></script>
+<script>
+MaxPage = $!{pageInfo.maxPage};
+paging();
+</script>

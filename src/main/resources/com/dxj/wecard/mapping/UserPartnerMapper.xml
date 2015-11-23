@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.UserPartnerMapper">
+  <resultMap id="BaseResultMap" type="com.dxj.wecard.model.UserPartner">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="partner_id" jdbcType="INTEGER" property="partnerId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.dxj.wecard.model.UserPartner">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into user_partner (user_id, partner_id)
+    values (#{userId,jdbcType=VARCHAR}, #{partnerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dxj.wecard.model.UserPartner">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into user_partner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="partnerId != null">
+        partner_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerId != null">
+        #{partnerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+    <delete id="deleteUser" parameterType="java.lang.String">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from user_partner where partner_id=#{partnerId,jdbcType=INTEGER}
+    delete from user where id=#{userId,jdbcType=INTEGER}
+  </delete>
+</mapper>

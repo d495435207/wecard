@@ -1,0 +1,79 @@
+#set($layout='layout/defaultUnderwriter.html')
+<link rel="stylesheet" type="text/css" href="../css/underwriterCash.css">
+<div class="content">
+	<div class="mt20 detail">
+		<div class="tabspan">
+			<span onclick="window.open('#springUrl("/underwriter/cash.do")','_self')">分成明细</span>
+			<span onclick="window.open('#springUrl("/underwriter/spend.do")','_self')">提现明细</span>
+			<span class="slidespan"></span>
+		</div>
+		<div class="mt30 ml20 clearfix">
+			<div class="mr10 cell">
+				<span class="icon"></span>
+				<div class="message">
+					<p>分成金额</p>
+					<p>
+						<span>￥$!{numeric.toFixedCurrency(${math.div($!{statInfo.sum},100)})}</span>
+					</p>
+				</div>
+			</div>
+			<div class="mr10 cell">
+				<span class="icon"></span>
+				<div class="message">
+					<p>卡券领取数</p>
+					<p>
+						<span>$!{numeric.toFixedNumber($!{statInfo.count})}</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="mt40 search clearfix">
+			<div class="search_item">
+				<div class="search_head">日期：</div>
+				<input class="input_text Wdate" type="text" id="startTime"
+					onFocus="WdatePicker()">
+			</div>
+			<div class="search_item">
+				<div class="search_head">至&nbsp;&nbsp;&nbsp;&nbsp;</div>
+				<input class="input_text Wdate" type="text" id="endTime"
+					onFocus="WdatePicker()">
+			</div>
+			<button class="search_btn" id="search_btn">搜索</button>
+			<span class="download" id="download">下载Excel</span>
+		</div>
+		<div class="table">
+			<table>
+				<thead>
+					<tr>
+						<th>日期</th>
+						<th>当日卡券领取数</th>
+						<th>当日分成金额（元）</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				#foreach(${item} in ${queryInfos})
+					<tr>
+						<td>$!{date.format('yyyy-MM-dd',$!{item.atTime})}</td>
+						<td>$!{item.count}</td>
+						<td>$!{numeric.toFixedCurrency(${math.div($!{item.sum},100)})}</td>
+						<td><a class="more" href="javascript:window.open('${rc.contextPath}/underwriter/cashDetail.do?atTime=$!{date.format('yyyy-MM-dd',$!{item.atTime})}', '_self')">详情</a></td>
+					</tr>
+					#end
+				</tbody>
+			</table>
+		</div>
+		<div class="mt20 paging" id="page"></div>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/underwriterCash.js"></script>
+<script>
+	$("#system_first").attr("class", "first_menu active_menu");
+	$("#system_cash_second").attr("class", "active_second_menu");
+	MaxPage = $!{pageInfo.maxPage};
+	paging();
+	$("#startTime").val("$!{date.format('yyyy-MM-dd',$!{pageInfo.startTime})}");
+	$("#endTime").val("$!{date.format('yyyy-MM-dd',$!{pageInfo.endTime})}");
+</script>

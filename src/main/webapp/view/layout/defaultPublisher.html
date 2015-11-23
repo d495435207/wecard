@@ -1,0 +1,59 @@
+#parse("tp/header.html")
+<div class="container">
+	<div class="left_menu clearfix">
+		<div class="left_scroll">
+			<img class="mt20 logo" src="../images/logo.jpg">
+			<div>
+				<a id="home_first" class="first_menu"
+					href="#springUrl('/publisher/index.do')"> <span
+					class="menu_icon"></span>首页
+				</a>
+			</div>
+			<div>
+				<a id="myCoupon_first" class="first_menu" href="javascript:;"> <span
+					class="menu_icon"></span>我的卡券
+				</a>
+				<ul class="second_menu hide">
+					<li><a id="myCoupon_manage_second"
+						href="#springUrl('/publisher/couponManage.do')">卡券管理</a></li>
+					<li><a id="myCoupon_put_second"
+						href="#springUrl('/publisher/couponPut.do')">已上架卡券</a></li>
+				</ul>
+			</div>
+			<div>
+				<a id="couponMarket_first" class="first_menu"
+					href="#springUrl('/publisher/couponMarket.do')"> <span
+					class="menu_icon"></span>卡券市场
+				</a>
+			</div>
+			<div>
+				<a id="system_first" class="first_menu" href="javascript:;"> <span
+					class="menu_icon"></span>系统管理
+				</a>
+				<ul class="second_menu hide">
+					<li><a id="system_cash_second"
+						href="#springUrl('/publisher/cash.do')">账户资金</a></li>
+					<li><a id="system_account_second"
+						href="#springUrl('/publisher/account.do')">账户信息</a></li>
+					<li><a id="system_modifyPassword_second"
+						href="#springUrl('/publisher/modifyPassword.do')">修改密码</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<header>
+			<div class="header">
+				<a href="#springUrl('/user/logout.do')"><img class="exit"
+					src="../images/exit.png"></a>
+				<div>
+					您好， <span id="recount">$!{userId}</span>
+				</div>
+			</div>
+			#if($session.getAttribute("isAuth")=="1")#else
+			<a class="tips" href="/wechatOAuth.html">
+				温馨提示：您的微信公众号还未授权，只有授权才能创建和同步您的微信卡券，点击进行授权 >>
+			 </a>
+			#end
+		</header>
+		$screen_content #parse("tp/footer.html")

@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<div class="container">
+	<a class="home" href=""> <img class="logo mr20"
+		src="images/logo.jpg"> 微卡券市场
+	</a> <span class="block_syb">|</span> <span class="theme">用户注册</span>
+</div>
+<div class="mt100 clearfix">
+	<div class="register">
+		<div>
+			<div class="form_head">
+				<span class="red">*</span>用户名：
+			</div>
+			<input id="phone" type="text" placeholder="请输入手机号码">
+		</div>
+		<div class="mt40">
+			<div class="form_head">
+				<span class="red">*</span>验证码：
+			</div>
+			<input class="security_ipt" id="security" type="text"
+				placeholder="请输入验证码">
+			<button class="security_btn" id="security_btn">获取验证码</button>
+		</div>
+		<div class="mt40">
+			<div class="form_head">
+				<span class="red">*</span>密码：
+			</div>
+			<input id="password" type="password" placeholder="请输入6-18位密码、字母、非空字符"
+				maxlength="18"> <input id="password_temp" type="hidden">
+		</div>
+		<div class="mt40">
+			<div class="form_head">
+				<span class="red">*</span>确认密码：
+			</div>
+			<input id="repassword" type="password"
+				placeholder="请输入6-18位密码、字母、非空字符" maxlength="18">
+		</div>
+		<div class="center">
+			<button class="btn" id="confirm">确定</button>
+			<button class="btn" onclick="window.open('#springUrl("/login.do")','_self')">取消</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/register.js"></script>

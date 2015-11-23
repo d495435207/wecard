@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.AreaMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.Area">
+		<!-- WARNING - @mbggenerated -->
+		<id column="pid" jdbcType="BIGINT" property="pid" />
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		pid, id, name
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.dxj.wecard.model.AreaKey"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from area
+		where pid = #{pid,jdbcType=BIGINT}
+		and id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.dxj.wecard.model.AreaKey">
+		<!-- WARNING - @mbggenerated -->
+		delete from area
+		where pid = #{pid,jdbcType=BIGINT}
+		and id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.Area">
+		<!-- WARNING - @mbggenerated -->
+		insert into area (pid, id, name)
+		values (#{pid,jdbcType=BIGINT}, #{id,jdbcType=BIGINT},
+		#{name,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.Area">
+		<!-- WARNING - @mbggenerated -->
+		insert into area
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pid != null">
+				#{pid,jdbcType=BIGINT},
+			</if>
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Area">
+		<!-- WARNING - @mbggenerated -->
+		update area
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where pid = #{pid,jdbcType=BIGINT}
+		and id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Area">
+		<!-- WARNING - @mbggenerated -->
+		update area
+		set name = #{name,jdbcType=VARCHAR}
+		where pid = #{pid,jdbcType=BIGINT}
+		and id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getAreasByPid" parameterType="java.lang.Long"
+		resultType="java.util.HashMap">
+		select
+		<include refid="Base_Column_List" />
+		from area
+		where pid = #{pid,jdbcType=BIGINT}
+	</select>
+</mapper>

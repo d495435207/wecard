@@ -1,0 +1,168 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/couponManage.css">
+<div class="content">
+	<div class="mt50 search clearfix">
+		<div class="search_item">
+			<div class="search_head">卡券类型：</div>
+			<div class="input_select" type="text">
+				<span class="input_select_value" id="card_type">全部</span>
+				<ul class="select_option">
+					<li value="">全部</li>
+					<li value="1">礼品券</li>
+					<li value="2">代金券</li>
+					<li value="3">团购券</li>
+					<li value="4">折扣券</li>
+					<li value="5">优惠券</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<div class="search_item">
+			<div class="search_head">卡券状态：</div>
+			<div class="input_select" type="text">
+				<span class="input_select_value" id="card_status">全部</span>
+				<ul class="select_option">
+					<li value="">全部</li>
+					<li value="1">已投放</li>
+					<li value="2">待投放</li>
+					<li value="3">已过期</li>
+					<li value="4">审核中</li>
+					<li value="5">未通过</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<div class="search_item">
+			<div class="search_head">卡券名称：</div>
+			<input class="input_text" type="text" id="card_title">
+		</div>
+		<div class="search_item">
+			<div class="search_head">公众号名称：</div>
+			<input class="input_text" type="text" id="app_name">
+		</div>
+		<button class="search_btn" id="search_btn">搜索</button>
+	</div>
+	<!-- <div class="mt50">
+				<button class="fr btn" id="wx_coupon">同步微信卡券</button>
+				<button class="btn" id="add_coupon">添加卡券</button>
+			</div> -->
+	<div class="mt20 coupon_list">
+		#foreach(${item} in ${queryInfos})
+		<div class="coupon_item clearfix">
+			<div class="coupon_show" style="background-color: $!item.color">
+				<div class="coupon_logo">
+					<img src="$!{item.logo}">
+				</div>
+				<div class="coupon_detail">
+					<p>$!{item.name}</p>
+					<p class="coupon_title">$!{item.title}</p>
+					<p>#if(${item.type}==1)礼品券 #elseif(${item.type}==2)代金券
+						#elseif(${item.type}==3)团购券 #elseif(${item.type}==4)折扣券
+						#elseif(${item.type}==5)优惠券 #else #end</p>
+				</div>
+			</div>
+			<div class="coupon_data">
+				<p class="coupon_status">#if(${item.status}==1)已投放#elseif(${item.status}==2)待投放#elseif(${item.status}==3)已过期#elseif(${item.status}==4)审核中#elseif(${item.status}==5)未通过#else#end</p>
+				<p>
+					库存：<span>$!{item.quantity}</span>
+				</p>
+				<p>
+					核销数：<span>$!{item.verifyCnt}</span>
+				</p>
+			</div>
+			<div class="mt10">
+				<button class="btn_small btn_edit"
+					onclick="javascript:cardId=$!{item.id};alertWindow('stock');">修改库存</button>
+				<button class="btn_small btn_use"
+					onclick="javascript:iframeOpen('${rc.contextPath}/manager/useDetail.do?cardId=$!{item.id}', 600, 510);">核销明细</button>
+				<button class="btn_small btn_detail"
+					onclick="javascript:cardId=$!{item.id};slideWindow($!{item.id});">详情</button>
+			</div>
+		</div>
+		#end
+	</div>
+	<div class="mt20 mb30 paging" id="page"></div>
+</div>
+</div>
+<div class="alert" id="stock">
+	<div>
+		<span>库存</span> <input id="stock_input" type="text"
+			placeholder="数量不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="stock_confirm">确定</button>
+		<button id="stock_cancel">取消</button>
+	</div>
+</div>
+<input type="hidden"  id="isAuth" value="$!{weixinapp.isAuth}">
+<div class="alert" id="warrant">
+	<div>
+		<span>您的微信公众号还未授权，是否立即授权？</span>
+	</div>
+	<div class="mt40 center">
+		<button id="warrant_confirm">确定</button>
+		<button id="warrant_cancel">取消</button>
+	</div>
+</div>
+<div class="alert" id="delete">
+	<div>
+		<span>您确定要删除此卡券吗？</span>
+	</div>
+	<div class="mt40 center">
+		<button id="delete_confirm">确定</button>
+		<button id="delete_cancel">取消</button>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/couponManage.js"></script>
+<script>
+$("#myCoupon_first").attr("class", "first_menu active_menu"); 
+$("#myCoupon_manage_second").attr("class", "active_second_menu"); 
+MaxPage = $!{pageInfo.maxPage};
+paging();
+$(".select_option li").click(function(){
+	selectOption(this);
+})
+$("#card_type").val("$!{pageInfo.type}");
+$("#card_status").val("$!{pageInfo.status}");
+$("#card_title").val("$!{pageInfo.title}");
+$("#app_name").val("$!{pageInfo.name}");
+$("#card_type").text("#if(${pageInfo.type}==1)礼品券#elseif(${pageInfo.type}==2)代金券#elseif(${pageInfo.type}==3)团购券#elseif(${pageInfo.type}==4)折扣券#elseif(${pageInfo.type}==5)优惠券#else全部#end");
+$("#card_status").text("#if(${pageInfo.status}==1)已投放#elseif(${pageInfo.status}==2)待投放#elseif(${pageInfo.status}==3)已过期#elseif(${pageInfo.status}==4)审核中#elseif(${pageInfo.status}==5)未通过#else全部#end");
+$("#card_title").text("$!{pageInfo.title}");
+$("#app_name").text("$!{pageInfo.name}");
+var cardId="";
+$('#search_btn').click(
+		function() {
+			var type = $("#card_type").val();
+			var status = $("#card_status").val();
+			var title = $("#card_title").val();
+			var name = $("#app_name").val();
+			window.open(ctxPath + "manager/couponManage.do?type=" + type
+					+ "&status=" + status + "&title=" + title+ "&name=" + name, '_self');
+		})
+		
+function updateStock() {
+	var stock = $.trim($("#stock_input").val());
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "manager/card/updateStock.do",
+		dataType : "json",
+		data : {
+			"cardId" : cardId,
+			"stock" : stock
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					location.reload();
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+</script>

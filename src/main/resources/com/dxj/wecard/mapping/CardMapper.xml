@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.CardMapper">
+  <resultMap id="BaseResultMap" type="com.dxj.wecard.model.Card">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="categories" jdbcType="VARCHAR" property="categories" />
+    <result column="card_status" jdbcType="INTEGER" property="cardStatus" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="total_quantity" jdbcType="INTEGER" property="totalQuantity" />
+    <result column="cost" jdbcType="INTEGER" property="cost" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="date_info" jdbcType="VARCHAR" property="dateInfo" />
+    <result column="receive_cnt" jdbcType="INTEGER" property="receiveCnt" />
+    <result column="receive_user" jdbcType="INTEGER" property="receiveUser" />
+    <result column="verify_cnt" jdbcType="INTEGER" property="verifyCnt" />
+    <result column="view_cnt" jdbcType="INTEGER" property="viewCnt" />
+    <result column="get_limit" jdbcType="INTEGER" property="getLimit" />
+    <result column="is_custom_code" jdbcType="INTEGER" property="isCustomCode" />
+    <result column="is_bind_openid" jdbcType="INTEGER" property="isBindOpenid" />
+    <result column="is_share" jdbcType="INTEGER" property="isShare" />
+    <result column="is_give_friend" jdbcType="INTEGER" property="isGiveFriend" />
+    <result column="branch_type" jdbcType="INTEGER" property="branchType" />
+    <result column="date_type" jdbcType="INTEGER" property="dateType" />
+    <result column="code_type" jdbcType="VARCHAR" property="codeType" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="cond_source" jdbcType="INTEGER" property="condSource" />
+    <result column="w_clogo" jdbcType="VARCHAR" property="wClogo" />
+    <result column="w_cname" jdbcType="VARCHAR" property="wCname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, app_id, card_id, categories, card_status, quantity, total_quantity, cost, card_type, 
+    title, sub_title, color, date_info, receive_cnt, receive_user, verify_cnt, view_cnt, 
+    get_limit, is_custom_code, is_bind_openid, is_share, is_give_friend, branch_type, 
+    date_type, code_type, status, source, cond_source, w_clogo, w_cname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    delete from card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dxj.wecard.model.Card"  useGeneratedKeys="true" keyProperty="id">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into card (id, app_id, card_id, 
+      categories, card_status, quantity, 
+      total_quantity, cost, card_type, 
+      title, sub_title, color, 
+      date_info, receive_cnt, receive_user, 
+      verify_cnt, view_cnt, get_limit, 
+      is_custom_code, is_bind_openid, is_share, 
+      is_give_friend, branch_type, date_type, 
+      code_type, status, source, 
+      cond_source, w_clogo, w_cname
+      )
+    values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, 
+      #{categories,jdbcType=VARCHAR}, #{cardStatus,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, 
+      #{totalQuantity,jdbcType=INTEGER}, #{cost,jdbcType=INTEGER}, #{cardType,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{dateInfo,jdbcType=VARCHAR}, #{receiveCnt,jdbcType=INTEGER}, #{receiveUser,jdbcType=INTEGER}, 
+      #{verifyCnt,jdbcType=INTEGER}, #{viewCnt,jdbcType=INTEGER}, #{getLimit,jdbcType=INTEGER}, 
+      #{isCustomCode,jdbcType=INTEGER}, #{isBindOpenid,jdbcType=INTEGER}, #{isShare,jdbcType=INTEGER}, 
+      #{isGiveFriend,jdbcType=INTEGER}, #{branchType,jdbcType=INTEGER}, #{dateType,jdbcType=INTEGER}, 
+      #{codeType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{condSource,jdbcType=INTEGER}, #{wClogo,jdbcType=VARCHAR}, #{wCname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dxj.wecard.model.Card" useGeneratedKeys="true" keyProperty="id">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    insert into card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
+      <if test="categories != null">
+        categories,
+      </if>
+      <if test="cardStatus != null">
+        card_status,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="totalQuantity != null">
+        total_quantity,
+      </if>
+      <if test="cost != null">
+        cost,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="dateInfo != null">
+        date_info,
+      </if>
+      <if test="receiveCnt != null">
+        receive_cnt,
+      </if>
+      <if test="receiveUser != null">
+        receive_user,
+      </if>
+      <if test="verifyCnt != null">
+        verify_cnt,
+      </if>
+      <if test="viewCnt != null">
+        view_cnt,
+      </if>
+      <if test="getLimit != null">
+        get_limit,
+      </if>
+      <if test="isCustomCode != null">
+        is_custom_code,
+      </if>
+      <if test="isBindOpenid != null">
+        is_bind_openid,
+      </if>
+      <if test="isShare != null">
+        is_share,
+      </if>
+      <if test="isGiveFriend != null">
+        is_give_friend,
+      </if>
+      <if test="branchType != null">
+        branch_type,
+      </if>
+      <if test="dateType != null">
+        date_type,
+      </if>
+      <if test="codeType != null">
+        code_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="condSource != null">
+        cond_source,
+      </if>
+      <if test="wClogo != null">
+        w_clogo,
+      </if>
+      <if test="wCname != null">
+        w_cname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="categories != null">
+        #{categories,jdbcType=VARCHAR},
+      </if>
+      <if test="cardStatus != null">
+        #{cardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="dateInfo != null">
+        #{dateInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCnt != null">
+        #{receiveCnt,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null">
+        #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyCnt != null">
+        #{verifyCnt,jdbcType=INTEGER},
+      </if>
+      <if test="viewCnt != null">
+        #{viewCnt,jdbcType=INTEGER},
+      </if>
+      <if test="getLimit != null">
+        #{getLimit,jdbcType=INTEGER},
+      </if>
+      <if test="isCustomCode != null">
+        #{isCustomCode,jdbcType=INTEGER},
+      </if>
+      <if test="isBindOpenid != null">
+        #{isBindOpenid,jdbcType=INTEGER},
+      </if>
+      <if test="isShare != null">
+        #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="isGiveFriend != null">
+        #{isGiveFriend,jdbcType=INTEGER},
+      </if>
+      <if test="branchType != null">
+        #{branchType,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null">
+        #{dateType,jdbcType=INTEGER},
+      </if>
+      <if test="codeType != null">
+        #{codeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="condSource != null">
+        #{condSource,jdbcType=INTEGER},
+      </if>
+      <if test="wClogo != null">
+        #{wClogo,jdbcType=VARCHAR},
+      </if>
+      <if test="wCname != null">
+        #{wCname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Card">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update card
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="categories != null">
+        categories = #{categories,jdbcType=VARCHAR},
+      </if>
+      <if test="cardStatus != null">
+        card_status = #{cardStatus,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalQuantity != null">
+        total_quantity = #{totalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="dateInfo != null">
+        date_info = #{dateInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCnt != null">
+        receive_cnt = #{receiveCnt,jdbcType=INTEGER},
+      </if>
+      <if test="receiveUser != null">
+        receive_user = #{receiveUser,jdbcType=INTEGER},
+      </if>
+      <if test="verifyCnt != null">
+        verify_cnt = #{verifyCnt,jdbcType=INTEGER},
+      </if>
+      <if test="viewCnt != null">
+        view_cnt = #{viewCnt,jdbcType=INTEGER},
+      </if>
+      <if test="getLimit != null">
+        get_limit = #{getLimit,jdbcType=INTEGER},
+      </if>
+      <if test="isCustomCode != null">
+        is_custom_code = #{isCustomCode,jdbcType=INTEGER},
+      </if>
+      <if test="isBindOpenid != null">
+        is_bind_openid = #{isBindOpenid,jdbcType=INTEGER},
+      </if>
+      <if test="isShare != null">
+        is_share = #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="isGiveFriend != null">
+        is_give_friend = #{isGiveFriend,jdbcType=INTEGER},
+      </if>
+      <if test="branchType != null">
+        branch_type = #{branchType,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null">
+        date_type = #{dateType,jdbcType=INTEGER},
+      </if>
+      <if test="codeType != null">
+        code_type = #{codeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="condSource != null">
+        cond_source = #{condSource,jdbcType=INTEGER},
+      </if>
+      <if test="wClogo != null">
+        w_clogo = #{wClogo,jdbcType=VARCHAR},
+      </if>
+      <if test="wCname != null">
+        w_cname = #{wCname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Card">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    update card
+    set app_id = #{appId,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      categories = #{categories,jdbcType=VARCHAR},
+      card_status = #{cardStatus,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      total_quantity = #{totalQuantity,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      date_info = #{dateInfo,jdbcType=VARCHAR},
+      receive_cnt = #{receiveCnt,jdbcType=INTEGER},
+      receive_user = #{receiveUser,jdbcType=INTEGER},
+      verify_cnt = #{verifyCnt,jdbcType=INTEGER},
+      view_cnt = #{viewCnt,jdbcType=INTEGER},
+      get_limit = #{getLimit,jdbcType=INTEGER},
+      is_custom_code = #{isCustomCode,jdbcType=INTEGER},
+      is_bind_openid = #{isBindOpenid,jdbcType=INTEGER},
+      is_share = #{isShare,jdbcType=INTEGER},
+      is_give_friend = #{isGiveFriend,jdbcType=INTEGER},
+      branch_type = #{branchType,jdbcType=INTEGER},
+      date_type = #{dateType,jdbcType=INTEGER},
+      code_type = #{codeType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      cond_source = #{condSource,jdbcType=INTEGER},
+      w_clogo = #{wClogo,jdbcType=VARCHAR},
+      w_cname = #{wCname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+	<select id="getCardCountByApp" parameterType="com.dxj.wecard.bean.Query" resultType="java.lang.Integer">
+		select
+		count(id)
+		from card
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getCardStatusCountByApp" parameterType="com.dxj.wecard.bean.BizQuery" resultType="java.lang.Integer">
+		select
+		count(id)
+		from card
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and card_status = #{status,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getCardsNumByApp" parameterType="com.dxj.wecard.bean.BizQuery" resultType="java.lang.Integer">
+		select count(id) from (
+		select c.*,w.name,w.logo from (
+		select
+		id,app_id,color,cost,quantity,title,sub_title
+		subTitle,status,card_type type,date_info dateInfo,receive_cnt
+		receiveCnt,verify_cnt verifyCnt
+		from card
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null">
+			and card_type=#{type,jdbcType=VARCHAR}
+		</if>
+		<if test="form != null">
+			and card_status=#{form,jdbcType=INTEGER}
+		</if>
+		<if test="title != null">
+			and title like
+			"%"#{title,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="status != null">
+			and status=#{status,jdbcType=VARCHAR}
+		</if>
+		) c left join
+		weixin_app w on c.app_id=w.id
+		where 1=1
+		<if test="name != null">
+			and name like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		) a
+	</select>
+
+	<select id="getCardsByApp" parameterType="com.dxj.wecard.bean.BizQuery" resultType="com.dxj.wecard.bean.BizQuery">
+		select c.*,w.name,w.logo from (
+		select
+		id,app_id,color,cost,quantity,title,sub_title
+		subTitle,status,card_type type,date_info dateInfo,receive_cnt
+		receiveCnt,verify_cnt verifyCnt
+		from card
+		where 1=1
+		<if test="appId != null">
+			and app_id = #{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null">
+			and card_type=#{type,jdbcType=VARCHAR}
+		</if>
+		<if test="form != null">
+			and card_status=#{form,jdbcType=INTEGER}
+		</if>
+		<if test="title != null">
+			and title like
+			"%"#{title,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="status != null">
+			and status=#{status,jdbcType=VARCHAR}
+		</if>
+		order by id desc) c left join
+		weixin_app w on c.app_id=w.id
+		where 1=1
+		<if test="name != null">
+			and name like
+			"%"#{name,jdbcType=VARCHAR}"%"
+		</if>
+		limit
+		#{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+	</select>
+
+	<select id="getWecardCardsByAppid" parameterType="java.lang.String" resultMap="BaseResultMap">
+		<![CDATA[ select * from card where app_id =#{appId,jdbcType=VARCHAR}
+		and  card_status!=3 ]]>
+	</select>
+	<delete id="deleteByAppid" parameterType="java.lang.String">
+		delete from card where
+		app_id=#{appId,jdbcType=VARCHAR}
+	</delete>
+
+	<select id="getCardsByChannelQuery" resultType="com.dxj.wecard.bean.order.DataQueryRsp">
+		select c.*,w.id
+		w_appid,w.name w_name,w.logo w_logo from (select app_id,id
+		cardid,card_id w_cardid,title,
+		sub_title,status,quantity,cost,color,date_info, card_type type from
+		card where card_type!=3) c left join
+		weixin_app w on c.app_id=w.id
+	</select>
+	<select id="getCardPanterVo" parameterType="java.util.Map" resultType="com.dxj.wecard.card.dto.CardPartnerVo">
+		select a.*,c.*,d.share_rate from card a  
+
+		left join channel c on a.id =c.card_id 
+		
+		left join partner d on c.partner_id =d.id where 
+		
+		<if test="cardId != null">
+			a.card_id=#{cardId,jdbcType=VARCHAR}
+		</if>
+		<if test="appId != null">
+			and a.app_id=#{appId,jdbcType=VARCHAR}
+		</if>
+		<if test="partnerId != null">
+			and c.partner_id=#{partnerId,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+</mapper>

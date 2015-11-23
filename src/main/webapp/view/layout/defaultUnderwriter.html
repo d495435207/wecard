@@ -1,0 +1,43 @@
+#parse("tp/header.html")
+<div class="container">
+	<div class="left_menu clearfix">
+		<div class="left_scroll">
+			<img class="mt20 logo" src="../images/logo.jpg">
+			<div>
+				<a id="home_first" class="first_menu"
+					href="#springUrl('/underwriter/index.do')"> <span
+					class="menu_icon"></span>首页
+				</a>
+			</div>
+			<div>
+				<a id="couponMarket_first" class="first_menu"
+					href="#springUrl('/underwriter/couponMarket.do')"> <span
+					class="menu_icon"></span>卡券市场
+				</a>
+			</div>
+			<div>
+				<a id="system_first" class="first_menu" href="javascript:;"> <span
+					class="menu_icon"></span>系统管理
+				</a>
+				<ul class="second_menu hide">
+					<li><a id="system_cash_second"
+						href="#springUrl('/underwriter/cash.do')">账户资金</a></li>
+					<li><a id="system_account_second"
+						href="#springUrl('/underwriter/account.do')">账户信息</a></li>
+					<li><a id="system_modifyPassword_second"
+						href="#springUrl('/underwriter/modifyPassword.do')">修改密码</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<header>
+			<div class="header">
+				<a href="#springUrl('/user/logout.do')"><img class="exit"
+					src="../images/exit.png"></a>
+				<div>
+					您好， <span id="recount">$!{userId}</span>
+				</div>
+			</div>
+		</header>
+		$screen_content #parse("tp/footer.html")

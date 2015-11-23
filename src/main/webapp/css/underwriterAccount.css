@@ -1,0 +1,167 @@
+.detail {
+	border-radius: 10px;
+	background-color: #fff;
+	border: 0;
+}
+
+.tabspan {
+	position: relative;
+	border-bottom: 2px solid #e0e0e0;
+}
+
+.tabspan span {
+	display: inline-block;
+	font-size: 18px;
+	padding: 15px 25px;
+	cursor: pointer;
+}
+
+.tabspan .slidespan {
+	position: absolute;
+	top: 54px;
+	left: 0;
+	width: 120px;
+	height: 2px;
+	background-color: #fec418;
+	padding: 0;
+	transition: all .3s;
+}
+
+.tab1, .tab2 {
+	padding: 60px 0;
+}
+
+.tab1 > div {
+	position: relative;
+}
+
+.tab1 > div span {
+	font-size: 16px
+}
+
+.tab1 > div:nth-child(5) .form_head {
+	vertical-align: top;
+}
+
+.form_head {
+	display: inline-block;
+	margin-left: 260px;
+	width: 120px;
+	font-size: 16px;
+	text-align: right;
+	color: #646464;
+}
+
+.long_input {
+	height: 34px;
+	display: inline-block;
+	width: 390px;
+	font-size: 16px;
+	background-color: #fff;
+	padding-left: 8px;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	transition: all .5s;
+}
+
+.add {
+	display: inline-block;
+	opacity: 0;
+	width: 400px;
+	transition: all .5s;
+}
+
+.add > .error {
+	top: 25px;
+}
+
+.add > input {
+	height: 30px;
+	width: 390px;
+	font-size: 16px;
+	background-color: #fff;
+	padding-left: 8px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.longinput {
+	position: relative;
+	bottom: 4px;
+	width: 370px;
+	font-size: 16px;
+	padding: 4px 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.input_select {
+	width: 89px;
+	height: 30px;
+	border: 1px solid #ccc;
+	position: relative;
+	margin-top: -7px;
+	margin-right: 14px;
+}
+
+.input_select:nth-child(3) {
+	margin-right: 0;
+}
+
+.input_select .input_select_value {
+	padding-top: 3px;
+	font-size: 16px;
+}
+
+.arrow {
+	top: 12px;
+	right: 12px;
+}
+
+.select_option {
+	top: 31px;
+	width: 119px;
+}
+
+.error {
+	top: 38px;
+	left: 384px;
+}
+
+#address + .error {
+	top: 57px;
+	left: 0;
+}
+
+.tab2 {
+	display: none;
+}
+
+.tip {
+	font-size: 16px;
+	padding-top: 130px;
+}
+
+.wx_img {
+	margin-top: 80px;
+	height: 50px;
+}
+
+.wx_data div {
+	margin-top: 25px;
+}
+
+.data_head {
+	display: inline-block;
+	width: 130px;
+	font-size: 16px;
+	vertical-align: top;
+	text-align: right;
+	margin-left: 240px;
+	margin-right: 50px;
+}
+
+.data_head + img {
+	width: 80px;
+	height: 80px;
+}

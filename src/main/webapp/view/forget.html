@@ -1,0 +1,82 @@
+<link rel="stylesheet" type="text/css" href="css/forget.css">
+<div class="container">
+	<a class="home" href=""> <img class="logo mr20"
+		src="images/logo.jpg"> 微卡券市场
+	</a> <span class="block_syb">|</span> <span class="theme">找回密码</span>
+</div>
+<div class="mt100 forget">
+	<div class="step clearfix">
+		<div class="step_num step_active">
+			<span>1</span>
+			<div class="bubble" id="bubble1">
+				<div class="tip">验证用户</div>
+				<canvas width="10px" height="6px" class="step_arrow" id="canvas"></canvas>
+			</div>
+		</div>
+		<div class="step_line"></div>
+		<div class="step_num">
+			<span>2</span>
+			<div class="bubble" id="bubble2">
+				<div class="tip">修改密码</div>
+				<canvas width="10px" height="6px" class="step_arrow" id="canvas"></canvas>
+			</div>
+		</div>
+		<div class="step_line"></div>
+		<div class="step_num">
+			<span>3</span>
+			<div class="bubble" id="bubble3">
+				<div class="tip">修改成功</div>
+				<canvas width="10px" height="6px" class="step_arrow" id="canvas"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="mt100" id="step1">
+		<div>
+			<div class="form_head">
+				<span class="red">*</span>用户名：
+			</div>
+			<input id="phone" type="text" placeholder="请输入手机号码">
+		</div>
+		<div class="mt40">
+			<div class="form_head">
+				<span class="red">*</span>验证码：
+			</div>
+			<input class="security_ipt" id="security" type="text"
+				placeholder="请输入验证码">
+			<button class="security_btn" id="security_btn">获取验证码</button>
+		</div>
+		<div class="mt100 center">
+			<button class="btn" onclick="window.open('#springUrl("/login.do")','_self')">取消</button>
+			<button class="btn" id="next">下一步</button>
+		</div>
+	</div>
+	<div class="mt100" id="step2">
+		<div>
+			<div class="form_head">
+				<span class="red">*</span>新密码：
+			</div>
+			<input id="password" type="password" placeholder="请输入6-18位密码、字母、非空字符">
+			<input id="password_temp" type="hidden">
+		</div>
+		<div class="mt40">
+			<div class="form_head">
+				<span class="red">*</span>确认新密码：
+			</div>
+			<input id="repassword" type="password"
+				placeholder="请输入6-18位密码、字母、非空字符">
+		</div>
+		<div class="mt100 center">
+			<button class="btn" id="prev">上一步</button>
+			<button class="btn" id="confirm">下一步</button>
+		</div>
+	</div>
+	<div class="mt100" id="step3">
+		<img class="success" src="images/success.png">
+		<p class="success_tip">密码修改成功！</p>
+		<p class="success_tip">
+			<span id="count">5</span> 秒钟后自动跳转到登陆页面，如不能跳转请 <a
+				href="#springUrl('/login.do')">点击这里</a>
+		</p>
+	</div>
+</div>
+<script type="text/javascript" src="js/forget.js"></script>

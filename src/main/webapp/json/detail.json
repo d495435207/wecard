@@ -1,0 +1,22 @@
+{
+	"coupon_state":"已投放",
+	"coupon_id":"sdljIJSDKJiskjSD93jSI8",
+	"coupon_type":"礼品券",
+	"m_title":"精品小吃送到家",
+	"v_title":"吃人嘴短",
+	"bg_color":"#eccc4e",
+	"date":"领取后当天生效，5天有效",
+	"coupon_name":"mustwin@chaolink.com",
+	"coupon_src":"images/coupon_logo.jpg",
+	"stock":"10",
+	"coupon_form":"条形码",
+	"tip":"支付请出示此券",
+	"limit":"每个用户限领1张",
+	"share":"用户可以分享卡券链接",
+	"give":"用户领取后可以转赠其他好友",
+	"notice":"本活动一切解释权归本司所有。",
+	"benefit":"折上折",
+	"tel":"13752885120",
+	"store_name":"必胜客",
+	"add":"必胜客杭州大厦店"
+}

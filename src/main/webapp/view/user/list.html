@@ -1,0 +1,7 @@
+#set($layout='layout/default-blank.html')
+<h2>List of Users</h2>  
+<ul>  
+    #foreach($user in $users)  
+        <li><a href="user/${user.id}.do">${user.id}</a></li>  
+    #end  
+</ul>  

@@ -1,0 +1,77 @@
+* {
+	font-family: '微软雅黑';
+}
+
+.home {
+	font-size: 24px;
+	color: #ffb647;
+}
+
+.logo {
+	vertical-align: bottom;
+}
+
+.body {
+	width: 100%;
+	height: 503px;
+	background: #d1c0a5 url(../images/body.png) center no-repeat;
+	background-size: cover;
+}
+
+.login {
+	float: right;
+	margin-top: 60px;
+	width: 270px;
+	height: 380px;
+	padding: 0 35px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #dbdbdb;
+	background-color: #fff;
+	text-align: center;
+}
+
+h1 {
+	margin-top: 40px;
+	font-size: 20px;
+	color: #636363;
+	font-weight: normal;
+}
+
+form input {
+	display: inline-block;
+	width: 200px;
+	height: 36px;
+	border: 2px solid #dcdcdc;
+	border-radius: 20px;
+	padding-left: 66px;
+	font-size: 16px;
+	background: url(../images/icon.png) 0 -87px no-repeat;
+}
+
+form input[type='password'] {
+	background: url(../images/icon.png) 0 -120px no-repeat;
+}
+
+form button {
+	width: 270px;
+	height: 40px;
+	border-radius: 20px;
+	background-color: #23d2a4;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.center a {
+	font-size: 18px;
+	color: #ffb647;
+}
+
+.center a:first-child {
+	margin-right: 90px;
+}
+
+.error {
+	left: 20px;
+}

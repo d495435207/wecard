@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxj.wecard.dao.PartnerMapper">
+	<resultMap id="BaseResultMap" type="com.dxj.wecard.model.Partner">
+		<!-- WARNING - @mbggenerated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="role" jdbcType="INTEGER" property="role" />
+		<result column="dev_id" jdbcType="VARCHAR" property="devId" />
+		<result column="dev_secret" jdbcType="VARCHAR" property="devSecret" />
+		<result column="share_rate" jdbcType="INTEGER" property="shareRate" />
+		<result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+		<result column="payee" jdbcType="VARCHAR" property="payee" />
+		<result column="opening_bank_name" jdbcType="VARCHAR" property="openingBankName" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="contacts" jdbcType="VARCHAR" property="contacts" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="mail" jdbcType="VARCHAR" property="mail" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="district" jdbcType="VARCHAR" property="district" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbggenerated -->
+		id, role, dev_id, dev_secret, share_rate, bank_name, payee,
+		opening_bank_name, bank_account,
+		company, contacts, phone, mail, country, province, city, district, address
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- WARNING - @mbggenerated -->
+		select
+		<include refid="Base_Column_List" />
+		from partner
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- WARNING - @mbggenerated -->
+		delete from partner
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dxj.wecard.model.Partner"  useGeneratedKeys="true" keyProperty="id">
+		insert into partner (id, role, dev_id,
+		dev_secret, share_rate, bank_name,
+		payee, opening_bank_name, bank_account,
+		company, contacts, phone,
+		mail, country, province,
+		city, district, address
+		)
+		values (#{id,jdbcType=INTEGER}, #{role,jdbcType=INTEGER},
+		#{devId,jdbcType=VARCHAR},
+		#{devSecret,jdbcType=VARCHAR}, #{shareRate,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR},
+		#{payee,jdbcType=VARCHAR}, #{openingBankName,jdbcType=VARCHAR},
+		#{bankAccount,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{mail,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.dxj.wecard.model.Partner"  useGeneratedKeys="true" keyProperty="id">
+		insert into partner
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="role != null">
+				role,
+			</if>
+			<if test="devId != null">
+				dev_id,
+			</if>
+			<if test="devSecret != null">
+				dev_secret,
+			</if>
+			<if test="shareRate != null">
+				share_rate,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="payee != null">
+				payee,
+			</if>
+			<if test="openingBankName != null">
+				opening_bank_name,
+			</if>
+			<if test="bankAccount != null">
+				bank_account,
+			</if>
+			<if test="company != null">
+				company,
+			</if>
+			<if test="contacts != null">
+				contacts,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="mail != null">
+				mail,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="role != null">
+				#{role,jdbcType=INTEGER},
+			</if>
+			<if test="devId != null">
+				#{devId,jdbcType=VARCHAR},
+			</if>
+			<if test="devSecret != null">
+				#{devSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="shareRate != null">
+				#{shareRate,jdbcType=INTEGER},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="payee != null">
+				#{payee,jdbcType=VARCHAR},
+			</if>
+			<if test="openingBankName != null">
+				#{openingBankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="contacts != null">
+				#{contacts,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				#{district,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dxj.wecard.model.Partner">
+		<!-- WARNING - @mbggenerated -->
+		update partner
+		<set>
+			<if test="role != null">
+				role = #{role,jdbcType=INTEGER},
+			</if>
+			<if test="devId != null">
+				dev_id = #{devId,jdbcType=VARCHAR},
+			</if>
+			<if test="devSecret != null">
+				dev_secret = #{devSecret,jdbcType=VARCHAR},
+			</if>
+			<if test="shareRate != null">
+				share_rate = #{shareRate,jdbcType=INTEGER},
+			</if>
+			<if test="bankName != null">
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="payee != null">
+				payee = #{payee,jdbcType=VARCHAR},
+			</if>
+			<if test="openingBankName != null">
+				opening_bank_name = #{openingBankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				company = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="contacts != null">
+				contacts = #{contacts,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				mail = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				district = #{district,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dxj.wecard.model.Partner">
+		<!-- WARNING - @mbggenerated -->
+		update partner
+		set role = #{role,jdbcType=INTEGER},
+		dev_id = #{devId,jdbcType=VARCHAR},
+		dev_secret = #{devSecret,jdbcType=VARCHAR},
+		share_rate = #{shareRate,jdbcType=INTEGER},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		payee = #{payee,jdbcType=VARCHAR},
+		opening_bank_name = #{openingBankName,jdbcType=VARCHAR},
+		bank_account = #{bankAccount,jdbcType=VARCHAR},
+		company = #{company,jdbcType=VARCHAR},
+		contacts = #{contacts,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		mail = #{mail,jdbcType=VARCHAR},
+		country = #{country,jdbcType=VARCHAR},
+		province = #{province,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		district = #{district,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getPartnerByUser" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select p.*
+		from user_partner up left join partner p on
+		up.partner_id=p.id
+		where up.user_id=#{id,jdbcType=VARCHAR}
+	</select>
+</mapper>

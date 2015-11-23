@@ -1,0 +1,102 @@
+.detail {
+	border-radius: 10px;
+	background-color: #fff;
+	border: 0;
+}
+
+.tabspan {
+	position: relative;
+	border-bottom: 2px solid #e0e0e0;
+}
+
+.tabspan span {
+	display: inline-block;
+	font-size: 18px;
+	padding: 15px 25px;
+	cursor: pointer;
+}
+
+.tabspan .slidespan {
+	position: absolute;
+	top: 54px;
+	left: 0;
+	width: 120px;
+	height: 2px;
+	background-color: #fec418;
+	padding: 0;
+}
+
+.cell {
+	display: inline-block;
+	float: left;
+	width: 205px;
+	height: 100px;
+	background-color: #7bdbc2;
+}
+
+.cell:first-child {
+	background-color: #f894a1;
+}
+
+.cell:hover {
+	box-shadow: 0 1px 7px 1px #ccc;
+}
+
+.icon {
+	display: inline-block;
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin: 26px 16px 26px 14px;
+	border-radius: 25px;
+}
+
+.message {
+	display: inline-block;
+	width: 110px;
+	margin-top: 20px;
+	text-align: center;
+	font-family: '微软雅黑';
+}
+
+.message p:first-child {
+	font-size: 16px;
+	color: #fff;
+}
+
+.message p:nth-child(2),.message p:nth-child(2) span {
+	color: #fff;
+	margin-top: 8px;
+	font-size: 18px;
+}
+
+.cell:nth-child(1) .icon {
+	background: #fff url(../images/icon.png) -484px -45px no-repeat;
+}
+
+.cell:nth-child(2) .icon {
+	background: #fff url(../images/icon.png) -284px -40px no-repeat;
+}
+
+.download {
+	float: right;
+	font-size: 16px;
+	color: #1b9af7;
+	cursor: pointer;
+	margin-right: 20px;
+	line-height: 60px;
+}
+
+.search .search_head {
+	width: initial;
+	margin-left: 20px;
+}
+
+.search .search_item {
+	width: initial;
+	margin-right: 10px;
+}
+
+.tabspan .tab2 {
+	left: 127px;
+}

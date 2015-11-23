@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<title>HTML</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/creatUnderwriter.css">
+</head>
+<body>
+<div class="container">
+	<div class="left_menu clearfix">
+		<div class="left_scroll">
+			<img class="mt20 logo" src="../images/logo.jpg">
+			<div>
+				<a class="first_menu" href="managerIndex.html">
+					<span class="menu_icon"></span>首页
+				</a>
+			</div>
+			<div>
+				<a class="first_menu" href="javascript:;">
+					<span class="menu_icon"></span>我的卡券
+				</a>
+				<ul class="second_menu hide">
+					<li><a href="managerCouponManage.html">卡券管理</a></li>
+					<li><a href="managerCouponPut.html">已上架卡券</a></li>
+				</ul>
+			</div>
+			<div>
+				<a class="first_menu" href="couponMarket.html">
+					<span class="menu_icon"></span>卡券市场
+				</a>
+			</div>
+			<div>
+				<a class="first_menu active_menu" href="javascript:;">
+					<span class="menu_icon"></span>系统管理
+				</a>
+				<ul class="second_menu hide">
+					<li><a href="../publisher/publisherManage.html">发行商管理</a></li>
+					<li><a class="active_second_menu" href="../underwriter/underwriterManage.html">承销商管理</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<header>
+			<div class="header">
+				<img class="exit" src="../images/exit.png">
+				<div>
+					您好， <span id="recount">18765432100</span>
+				</div>
+			</div>
+		</header>
+		<div class="mt30 content">
+			<div class="form_content">
+				<p class="form_head">基本信息</p>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						用户名：
+					</span>
+					<input class="text_input" id="phone" type="text" placeholder="请输入手机号码">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						密码：
+					</span>
+					<input class="text_input" id="password" type="password" placeholder="请输入6-18位密码、字母、非空字符" maxlength="18">
+					<input id="password_temp" type="hidden">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						确认密码：
+					</span>
+					<input class="text_input" id="repassword" type="password" placeholder="请输入6-18位密码、字母、非空字符" maxlength="18">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						承销商名称：
+					</span>
+					<input class="text_input" id="name" type="text" placeholder="不超过15个字" maxlength="15">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						分成占比：
+					</span>
+					<div class="input_select">
+						<span class="input_select_value" id="percent"></span>
+						<ul class="select_option">
+							<li>--请选择--</li>
+							<li>10%</li>
+						</ul>
+						<span class="arrow" src="images/arrow.png"></span>
+					</div>
+				</div>
+				<p class="mt50 form_head">财务信息</p>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						银行名称：
+					</span>
+					<input class="text_input" id="bank" type="text">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						收款方：
+					</span>
+					<input class="text_input" id="beneficiary" type="text">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						开户行名称：
+					</span>
+					<input class="text_input" id="bank_name" type="text">
+				</div>
+				<div>
+					<span class="input_head">
+						<span class="red">*</span>
+						银行账号：
+					</span>
+					<input class="text_input" id="bank_account" type="text">
+				</div>
+			</div>
+			<div class="mt40 mb30 center">
+				<button class="btn" id="confirm">确定</button>
+				<button class="btn" id="cancel">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/creatUnderwriter.js"></script>
+</body>
+</html>

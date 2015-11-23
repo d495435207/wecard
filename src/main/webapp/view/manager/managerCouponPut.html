@@ -1,0 +1,205 @@
+#set($layout='layout/defaultManager.html')
+<link rel="stylesheet" type="text/css" href="../css/couponPut.css">
+<div class="content">
+	<!-- <div class="mt20 tip">
+				<p>已上架的卡券能被用于投放。</p>
+				<p class="mt15">当账户余额不足时，投放中的卡券将无法被领取，请确保账户余额充足。</p>
+			</div> -->
+	<div class="mt50 search clearfix">
+		<div class="search_item">
+			<div class="search_head">卡券类型：</div>
+			<div class="input_select" type="text">
+				<span class="input_select_value" id="card_type">全部</span>
+				<ul class="select_option">
+					<li value="">全部</li>
+					<li value="1">礼品券</li>
+					<li value="2">代金券</li>
+					<li value="3">团购券</li>
+					<li value="4">折扣券</li>
+					<li value="5">优惠券</li>
+				</ul>
+				<span class="arrow" src="images/arrow.png"></span>
+			</div>
+		</div>
+		<div class="search_item">
+			<div class="search_head">卡券名称：</div>
+			<input class="input_text" type="text" id="card_title">
+		</div>
+		<div class="search_item">
+			<div class="search_head">公众号名称：</div>
+			<input class="input_text" type="text" id="app_name">
+		</div>
+		<button class="search_btn" id="search_btn">搜索</button>
+	</div>
+	<div>
+		<button class="btn"
+			onclick="window.open('${rc.contextPath}/manager/couponChoose.do','_self')">选择上架卡券</button>
+	</div>
+	<div class="mt20 coupon_list">
+		#foreach(${item} in ${queryInfos})
+		<div class="coupon_item clearfix">
+			<div class="coupon_show" style="background-color: $!item.color">
+				<div class="coupon_logo">
+					<img src="$!{item.logo}">
+				</div>
+				<div class="coupon_detail">
+					<p>$!{item.name}</p>
+					<p class="coupon_title">$!{item.title}</p>
+					<p>#if(${item.type}==1)礼品券 #elseif(${item.type}==2)代金券
+						#elseif(${item.type}==3)团购券 #elseif(${item.type}==4)折扣券
+						#elseif(${item.type}==5)优惠券 #else #end</p>
+				</div>
+			</div>
+			<div class="coupon_data">
+				<p>
+					单价：<span>$!{numeric.toFixedCurrency(${math.div($!{item.cost},100)})}</span>元
+				</p>
+				<p>
+					库存：<span>$!{item.quantity}</span>
+				</p>
+				<p>
+					领取数：<span>$!{item.receiveCnt}</span>
+				</p>
+			</div>
+			<div class="coupon_op">
+				<button class="btn_small btn_price"
+					onclick="javascript:cardId=$!{item.id};alertWindow('price');">修改单价</button>
+				<button class="btn_small btn_edit"
+					onclick="javascript:cardId=$!{item.id};alertWindow('stock');">修改库存</button>
+				<button class="btn_small btn_pick"
+					onclick="javascript:cardId=$!{item.id};iframeOpen('${rc.contextPath}/manager/pickDetail.do?cardId=$!{item.id}', 600, 510);">领取明细</button>
+				<button class="btn_small btn_detail"
+					onclick="javascript:cardId=$!{item.id};slideWindow();">详情</button>
+				<button class="btn_small btn_down"
+					onclick="javascript:cardId=$!{item.id};alertWindow('down');">下架</button>
+			</div>
+		</div>
+		#end
+	</div>
+	<div class="mt20 mb30 paging" id="page"></div>
+</div>
+</div>
+<div class="alert" id="stock">
+	<div>
+		<span>库存</span> <input id="stock_input" type="text"
+			placeholder="数量不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="stock_confirm">确定</button>
+		<button id="stock_cancel">取消</button>
+	</div>
+</div>
+<div class="alert" id="price">
+	<div>
+		<span>单价</span> <input id="price_input" type="text"
+			placeholder="价格不能少于0">
+	</div>
+	<div class="mt40 center">
+		<button id="price_confirm">确定</button>
+		<button id="price_cancel">取消</button>
+	</div>
+</div>
+<div class="alert" id="down">
+	<div>
+		<span>您确定下架此卡券吗，下架后将不能被用于投放！</span>
+	</div>
+	<div class="mt40 center">
+		<button id="down_confirm">确定</button>
+		<button id="down_cancel">取消</button>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="../js/couponPut.js"></script>
+<script>
+$("#myCoupon_first").attr("class", "first_menu active_menu"); 
+$("#myCoupon_put_second").attr("class", "active_second_menu"); 
+MaxPage = $!{pageInfo.maxPage};
+paging();
+$(".select_option li").click(function(){
+	selectOption(this);
+})
+$("#card_type").val("$!{pageInfo.type}");
+$("#card_title").val("$!{pageInfo.title}");
+$("#app_name").val("$!{pageInfo.name}");
+$("#card_type").text("#if(${pageInfo.type}==1)礼品券#elseif(${pageInfo.type}==2)代金券#elseif(${pageInfo.type}==3)团购券#elseif(${pageInfo.type}==4)折扣券#elseif(${pageInfo.type}==5)优惠券#else全部#end");
+$("#card_title").text("$!{pageInfo.title}");
+$("#app_name").text("$!{pageInfo.name}");
+var cardId="";
+$('#search_btn').click(
+		function() {
+			var type = $("#card_type").val();
+			var title = $("#card_title").val();
+			var name = $("#app_name").val();
+			window.open(ctxPath + "manager/couponPut.do?type=" + type + "&title=" + title+ "&name=" + name, '_self');
+		})
+		
+		function updateStock() {
+	var stock = $.trim($("#stock_input").val());
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "manager/card/updateStock.do",
+		dataType : "json",
+		data : {
+			"cardId" : cardId,
+			"stock" : stock
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					location.reload();
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+
+function updateCost() {
+	var cost = $.trim($("#price_input").val());
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "manager/card/updateCost.do",
+		dataType : "json",
+		data : {
+			"cardId" : cardId,
+			"cost" : cost
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					location.reload();
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+
+function cardDown() {
+	$.ajax({
+		type : "POST",
+		url : ctxPath + "manager/card/down.do",
+		dataType : "json",
+		data : {
+			"cardId" : cardId
+		},
+		success : function(data) {
+			if (data.res == "success") {
+				if (data.code == "1000") {
+					location.reload();
+				} else {
+					alert(data.msg);
+				}
+			} else {
+				alert(data.msg);
+			}
+		}
+	});
+}
+</script>
